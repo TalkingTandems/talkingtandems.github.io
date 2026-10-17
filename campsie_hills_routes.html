@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campsie Hills Cycling Routes - Accessible Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c5530;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2c5530;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #2c5530;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .route-card {
+            background-color: #f8f9fa;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .route-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c5530;
+        }
+        
+        .route-stats {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .moderate {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .difficult {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .very-difficult {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        .route-instructions {
+            background-color: white;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .route-instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .route-instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .landmark {
+            font-weight: bold;
+            color: #2c5530;
+        }
+        
+        .road {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .notes {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .notes h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .notes ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .notes li {
+            margin-bottom: 8px;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #2c5530;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 100;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        .navigation {
+            background-color: #e8f5e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .navigation h2 {
+            margin-top: 0;
+        }
+        
+        .navigation ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .navigation li {
+            margin-bottom: 10px;
+        }
+        
+        .navigation a {
+            color: #2c5530;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .navigation a:hover,
+        .navigation a:focus {
+            background-color: #4CAF50;
+            color: white;
+            outline: 2px solid #2c5530;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .route-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .route-stats {
+                margin-top: 10px;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .container {
+                border: 2px solid black;
+            }
+            
+            h1, h2, h3 {
+                color: black;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .navigation a {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div class="container">
+        <header>
+            <h1 id="main-content">Campsie Hills Cycling Routes</h1>
+            <p><strong>Accessible cycling guide for iconic climbs including Tak Ma Doon, Crow Road, and Top O' The World</strong></p>
+        </header>
+
+        <nav class="navigation" role="navigation" aria-label="Route navigation">
+            <h2>Quick Navigation</h2>
+            <ul>
+                <li><a href="#overview">Route Overview</a></li>
+                <li><a href="#start-finish">Start & Finish Point</a></li>
+                <li><a href="#basic-route">Basic Route (40km)</a></li>
+                <li><a href="#extended-route">Extended Route (65km)</a></li>
+                <li><a href="#notes">Important Notes</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="overview">
+                <h2>Route Overview</h2>
+                <p>These are excellent rides which take in a number of iconic and demanding climbs, most notably:</p>
+                <ul>
+                    <li><span class="landmark">Tak Ma Doon</span> - Common to both routes</li>
+                    <li><span class="landmark">Crow Road</span> - Common to both routes</li>
+                    <li><span class="landmark">Top O' The World</span> - Extended route only</li>
+                </ul>
+                
+                <p><strong>Historical significance:</strong></p>
+                <ul>
+                    <li>Top O' The World featured in The Milk Race (now Tour of Britain)</li>
+                    <li>Crow Road featured in the 2023 UCI World Road Racing Championship course</li>
+                    <li>Tak Ma Doon was used in a successful World Everesting record attempt (34 climbs in under 12 hours!)</li>
+                </ul>
+            </section>
+
+            <section id="start-finish">
+                <h2>Start and Finish Point</h2>
+                <p><strong>Location:</strong> Car park opposite the <span class="landmark">Boathouse Bar and Restaurant</span></p>
+                <p><strong>Address:</strong> <span class="landmark">Auchinstarry Marina</span> on the south bank of the <span class="landmark">Forth and Clyde Canal</span> adjacent to the <span class="road">B802 (Howe Road)</span></p>
+            </section>
+
+            <section id="basic-route">
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-title">Basic Route</div>
+                        <div class="route-stats">
+                            <span>40km approximately</span>
+                            <span class="difficulty moderate">Moderately Difficult to Difficult</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-instructions">
+                        <h3>Step-by-Step Instructions:</h3>
+                        <ol>
+                            <li><strong>Start:</strong> Exit car park and turn <strong>RIGHT</strong> onto <span class="road">B802 (Howe Road)</span></li>
+                            <li>Follow B802 into <span class="landmark">Kilsyth</span> to junction with <span class="road">A803 (Stirling Road)</span> - <span class="landmark">Kilsyth Swimming Pool</span> is on the left</li>
+                            <li>Turn <strong>RIGHT</strong> onto <span class="road">A803 (Stirling Road)</span></li>
+                            <li>After short distance, turn <strong>LEFT</strong> onto <span class="road">Tak Ma Doon Road</span> (unclassified road; signs for golf course)</li>
+                            <li>Climb in several steep and lengthy sections past golf course (on left) to car park on right (resting point!)</li>
+                            <li>Continue over summit and descend past <span class="landmark">Faughlin Reservoir</span> (on right)</li>
+                            <li>Cross <span class="landmark">River Carron</span> and climb to junction with <span class="road">B818</span> at <span class="landmark">Carronbridge</span></li>
+                            <li>Turn <strong>LEFT</strong> and follow <span class="road">B818</span> for several km alongside river then <span class="landmark">Carron Reservoir</span></li>
+                            <li>Road descends steeply and bends sharply left to cross <span class="landmark">Endrick Water</span></li>
+                            <li>Beyond bridge, <span class="road">B818</span> bends sharply right towards <span class="landmark">Fintry</span> - ignore <span class="road">Crow Road</span> for now</li>
+                            <li>Follow <span class="road">B818</span> to <span class="landmark">Fintry Inn</span> for lunch</li>
+                            <li>After lunch, return along <span class="road">B818</span> and carry straight on to join <span class="road">Crow Road</span></li>
+                            <li>Climb <span class="road">Crow Road</span> for long distance (several wide bends) before steep and fast descent to <span class="landmark">Lennoxtown</span></li>
+                            <li>Turn <strong>LEFT</strong> onto <span class="road">A891</span> and follow to <span class="landmark">Milton of Campsie</span></li>
+                            <li>Turn <strong>RIGHT</strong> onto <span class="road">B757 (Birdston Road)</span> and follow to junction with <span class="road">A803</span> in <span class="landmark">Kirkintilloch</span></li>
+                            <li>Cross <span class="road">A803</span> onto <span class="road">Ledgate</span> then turn <strong>LEFT</strong> onto <span class="road">Eastgate</span></li>
+                            <li>Take <strong>2ND EXIT</strong> at roundabout onto <span class="road">Hillend Road</span></li>
+                            <li>Leave <span class="road">Hillend Road</span> just before crossing <span class="landmark">Forth and Clyde Canal</span> and turn <strong>LEFT</strong> onto <span class="road">NCR754</span> on north bank</li>
+                            <li>Follow <span class="road">NCR754</span> until <span class="landmark">Auchinstarry Marina</span> comes into view on opposite bank</li>
+                            <li><strong>Finish:</strong> Leave <span class="road">NCR754</span> and use <span class="road">B802</span> to cross canal, then turn <strong>LEFT</strong> into Marina car park</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="extended-route">
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-title">Extended Route</div>
+                        <div class="route-stats">
+                            <span>65km approximately</span>
+                            <span class="difficulty very-difficult">Difficult to Very Difficult</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-instructions">
+                        <h3>Extended Route Instructions:</h3>
+                        <ol>
+                            <li>Follow Basic Route as far as <span class="landmark">Carronbridge</span></li>
+                            <li>Cross <span class="road">B818</span> to join unclassified road</li>
+                            <li>Carry straight on uphill, ignoring turns left or right, past <span class="landmark">Loch Coulter</span></li>
+                            <li>Beyond <span class="landmark">Muirpark Farm</span>, turn <strong>LEFT</strong> and follow road to <span class="landmark">North Third Reservoir</span> (on right)</li>
+                            <li>Near north end of reservoir and just after 'Osprey Hideaways', turn <strong>SHARP LEFT</strong> onto <span class="road">Top O' The World</span> road</li>
+                            <li>Climb <span class="road">Top O' The World</span> (long and steep climb as name implies)</li>
+                            <li>After climb, road descends to meet <span class="road">B818</span></li>
+                            <li>Turn <strong>RIGHT</strong> here to re-join Basic Route</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="notes">
+                <div class="notes">
+                    <h3>Important Notes and Warnings</h3>
+                    <ul>
+                        <li><strong>Weather:</strong> Both routes are serious propositions best avoided in poor weather due to remoteness and exposure to elements</li>
+                        <li><strong>Tak Ma Doon descent:</strong> Road crosses small concrete-lined ford - prominently signposted but care required</li>
+                        <li><strong>Facilities:</strong> <span class="landmark">Carron Valley MTB Trails</span> (left of B818 from Carronbridge) - toilets available</li>
+                        <li><strong>Lunch stop:</strong> <span class="landmark">Fintry Inn</span> (re-opened June 2022) - good food and brews its own beer</li>
+                        <li><strong>Road conditions:</strong> <span class="road">Top O' The World</span> surface poor in places, particularly on descent</li>
+                        <li><strong>Safety:</strong> Blind right-hand bend near bottom of descent to <span class="landmark">Lennoxtown</span> - care required</li>
+                        <li><strong>Alternative route:</strong> <span class="landmark">Strathkelvin Railway Path</span> provides more direct, traffic-free route from <span class="landmark">Lennoxtown</span> to <span class="landmark">Kirkintilloch</span> - resurfaced 2022</li>
+                        <li><strong>NCR754 chicanes:</strong> Several chicanes not tandem-friendly - bikes can be lifted around/over them, or avoid by following <span class="road">A803</span> east from <span class="landmark">Kirkintilloch</span> then fork <strong>RIGHT</strong> onto <span class="road">B8023</span> to <span class="road">B802</span></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><small>This guide is designed with accessibility in mind for visually impaired cyclists. Use screen readers and keyboard navigation for optimal experience.</small></p>
+        </footer>
+    </div>
+</body>
+</html> 
