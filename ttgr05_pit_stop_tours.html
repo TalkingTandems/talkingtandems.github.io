@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TTGR05 – Pit Stop Tours</title>
+  <style>
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;max-width:1200px;margin:0 auto;padding:20px;background:#f5f5f5;color:#333}
+    .container{background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    h1{color:#2c5530;font-size:2.5em;margin-bottom:20px;border-bottom:3px solid #4CAF50;padding-bottom:10px}
+    h2{color:#2c5530;font-size:1.8em;margin:30px 0 15px;border-left:4px solid #4CAF50;padding-left:15px}
+    h3{color:#2c5530;font-size:1.3em;margin:20px 0 10px}
+    .route-card{background:#f8f9fa;border:2px solid #4CAF50;border-radius:8px;padding:20px;margin:20px 0;position:relative}
+    .route-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .route-title{font-size:1.25em;font-weight:700;color:#2c5530}
+    .route-stats{background:#4CAF50;color:#fff;padding:8px 15px;border-radius:20px;font-weight:700}
+    .difficulty{display:inline-block;padding:5px 12px;border-radius:15px;font-weight:700;margin-left:10px}
+    .easy{background:#2196f3;color:#fff}
+    .notes{background:#fff3cd;border:1px solid #ffeaa7;border-radius:5px;padding:15px;margin:20px 0}
+    .notes h3{color:#856404;margin-top:0}
+    .skip-link{position:absolute;top:-40px;left:6px;background:#2c5530;color:#fff;padding:8px;text-decoration:none;border-radius:4px;z-index:100}
+    .skip-link:focus{top:6px}
+    .navigation{background:#e8f5e8;border-radius:8px;padding:20px;margin:20px 0}
+    .navigation h2{margin-top:0}
+    .navigation ul{list-style:none;padding:0}
+    .navigation li{margin-bottom:10px}
+    .navigation a{color:#2c5530;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:5px;display:inline-block;transition:background-color .3s}
+    .navigation a:hover,.navigation a:focus{background:#4CAF50;color:#fff;outline:2px solid #2c5530}
+    table{width:100%;border-collapse:collapse;margin:10px 0 0}
+    th,td{border:1px solid #e0e0e0;padding:8px 10px;vertical-align:top}
+    th{background:#e8f5e8;text-align:left}
+    .pit{font-weight:700;color:#2c5530}
+    @media (max-width:768px){body{padding:10px}.container{padding:20px}.route-header{flex-direction:column;align-items:flex-start}.route-stats{margin-top:10px}}
+    @media (prefers-contrast:high){body{background:#fff;color:#000}.container{border:2px solid #000}h1,h2,h3{color:#000}}
+    @media (prefers-reduced-motion:reduce){.navigation a{transition:none}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="container">
+    <header>
+      <h1 id="main-content">TTGR05 – Wee Roy’s Pit Stop Tour</h1>
+      <p><strong>Concept:</strong> A friendly food-&amp;-coffee loop linking favourite pit stops around Fife and Perthshire.</p>
+      <p><em>Start/Finish: Home</em></p>
+    </header>
+
+    <nav class="navigation" aria-label="Route navigation">
+      <h2>Quick Navigation</h2>
+      <ul>
+        <li><a href="#stops">Pit Stops &amp; Opening Hours</a></li>
+        <li><a href="#route">Suggested Order</a></li>
+        <li><a href="#notes">Notes</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="stops">
+        <h2>Pit Stops &amp; Opening Hours</h2>
+        <div class="route-card" role="group" aria-labelledby="stops-title">
+          <div class="route-header">
+            <div class="route-title" id="stops-title">Cafés on the Tour</div>
+            <div class="route-stats"><span class="difficulty easy">Leisurely</span></div>
+          </div>
+          <table aria-label="Pit stops with opening hours">
+            <thead>
+              <tr><th class="pit">Pit Stop</th><th>Place</th><th>Opening Hours</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="pit">Powmill Milk Bar</td><td>Powmill</td><td>09:00–17:00</td></tr>
+              <tr><td class="pit">Dunning Golf Club – The Tee Room</td><td>Dunning</td><td>08:30–15:30</td></tr>
+              <tr><td class="pit">Brig Farm</td><td>Bridge of Earn</td><td>08:00–18:00</td></tr>
+              <tr><td class="pit">Lochend Farm Shop</td><td>Loch Leven</td><td>09:00–18:00</td></tr>
+              <tr><td class="pit">Townhill Loch Café</td><td>Townhill</td><td>10:00–16:00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="route">
+        <div class="route-card">
+          <div class="route-header">
+            <div class="route-title">Suggested Order</div>
+            <div class="route-stats">Flexible</div>
+          </div>
+          <div class="route-instructions">
+            <h3>Step-by-Step (high level)</h3>
+            <ol>
+              <li><strong>Start:</strong> Home</li>
+              <li>→ <span class="pit">Powmill Milk Bar</span></li>
+              <li>→ <span class="pit">Dunning Golf Club (Tee Room)</span></li>
+              <li>→ <span class="pit">Brig Farm (Bridge of Earn)</span></li>
+              <li>→ <span class="pit">Lochend Farm (Loch Leven)</span></li>
+              <li>→ <span class="pit">Townhill Loch Café</span></li>
+              <li><strong>Finish:</strong> Home</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="notes">
+        <div class="notes">
+          <h3>Notes</h3>
+          <ul>
+            <li>Check opening times on the day, as hours may vary seasonally.</li>
+            <li>“Other details TBA” – space reserved for distances, gradients, and alternative sequences.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>Designed for accessibility (screen-reader friendly headings, keyboard focus styles, and high-contrast support).</small></p>
+    </footer>
+  </div>
+</body>
+</html>

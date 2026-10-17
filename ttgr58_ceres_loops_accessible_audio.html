@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TTGR58 – Ceres Loops (Accessible with Audio)</title>
+  <style>
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;max-width:1200px;margin:0 auto;padding:20px;background:#f5f5f5;color:#333}
+    .container{background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    h1{color:#2c5530;font-size:2.5em;margin-bottom:20px;border-bottom:3px solid #4CAF50;padding-bottom:10px}
+    h2{color:#2c5530;font-size:1.8em;margin:30px 0 15px;border-left:4px solid #4CAF50;padding-left:15px}
+    h3{color:#2c5530;font-size:1.3em;margin:20px 0 10px}
+    .route-card{background:#f8f9fa;border:2px solid #4CAF50;border-radius:8px;padding:20px;margin:20px 0;position:relative}
+    .route-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .route-title{font-size:1.25em;font-weight:700;color:#2c5530}
+    .route-stats{background:#4CAF50;color:#fff;padding:8px 15px;border-radius:20px;font-weight:700}
+    .difficulty{display:inline-block;padding:5px 12px;border-radius:15px;font-weight:700;margin-left:10px}
+    .tbc{background:#9e9e9e;color:#fff}
+    .notes{background:#fff3cd;border:1px solid #ffeaa7;border-radius:5px;padding:15px;margin:20px 0}
+    .notes h3{color:#856404;margin-top:0}
+    .skip-link{position:absolute;top:-40px;left:6px;background:#2c5530;color:#fff;padding:8px;text-decoration:none;border-radius:4px;z-index:100}
+    .skip-link:focus{top:6px}
+    .navigation{background:#e8f5e8;border-radius:8px;padding:20px;margin:20px 0}
+    .navigation h2{margin-top:0}
+    .navigation ul{list-style:none;padding:0}
+    .navigation li{margin-bottom:10px}
+    .navigation a{color:#2c5530;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:5px;display:inline-block;transition:background-color .3s}
+    .navigation a:hover,.navigation a:focus{background:#4CAF50;color:#fff;outline:2px solid #2c5530}
+    .listen-bar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;background:#e8f5e8;border:2px dashed #4CAF50;padding:12px;border-radius:10px;margin:16px 0}
+    .btn{appearance:none;border:1px solid #2c5530;background:#2c5530;color:#fff;padding:.5rem .75rem;border-radius:.6rem;cursor:pointer}
+    .btn.secondary{background:#fff;color:#2c5530}
+    .btn:focus{outline:3px solid #4CAF50;outline-offset:2px}
+    .visually-hidden{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px);white-space:nowrap;border:0;padding:0;margin:-1px}
+    @media (max-width:768px){body{padding:10px}.container{padding:20px}.route-header{flex-direction:column;align-items:flex-start}.route-stats{margin-top:10px}}
+    @media (prefers-contrast:high){body{background:#fff;color:#000}.container{border:2px solid #000}h1,h2,h3{color:#000}}
+    @media (prefers-reduced-motion:reduce){.navigation a{transition:none}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="container">
+    <header role="banner">
+      <h1 id="main-content">TTGR58 – Ceres Loops</h1>
+      <p><strong>Start/Finish:</strong> <span class="landmark">Ceres Car Park</span></p>
+      <p><strong>Distance/Ascent:</strong> <em>Awaiting Recce</em></p>
+      <p><strong>Grade:</strong> <span class="difficulty tbc">TBC</span></p>
+
+      <!-- Global listen controls -->
+      <div class="listen-bar" role="group" aria-label="Audio controls for page summary">
+        <strong>Listen:</strong>
+        <button class="btn" id="play-summary" aria-describedby="listen-help">Play summary</button>
+        <button class="btn secondary" id="pause-summary">Pause</button>
+        <button class="btn secondary" id="resume-summary">Resume</button>
+        <button class="btn secondary" id="stop-summary">Stop</button>
+        <span id="listen-help" class="visually-hidden">These buttons control a spoken summary of the page using your browser's speech features.</span>
+      </div>
+    </header>
+
+    <nav class="navigation" aria-label="Route navigation">
+      <h2>Quick Navigation</h2>
+      <ul>
+        <li><a href="#main-route">Main Loop</a></li>
+        <li><a href="#extension">Optional Extension</a></li>
+        <li><a href="#short">Shortened Version</a></li>
+        <li><a href="#notes">Notes</a></li>
+      </ul>
+    </nav>
+
+    <main role="main">
+      <section id="main-route" role="region" aria-labelledby="main-route-title" tabindex="-1">
+        <div class="route-card">
+          <div class="route-header">
+            <h2 class="route-title" id="main-route-title">Main Loop</h2>
+            <div class="route-stats"><span class="difficulty tbc">Awaiting Recce</span></div>
+          </div>
+          <div class="listen-bar" role="group" aria-label="Audio controls for Main Loop section">
+            <button class="btn" data-say="#main-loop-text">Listen to this section</button>
+          </div>
+          <div class="route-instructions" id="main-loop-text" data-srtext="Main Loop from Ceres via Baldinnie, Crossgates, Peat Inn, Higham Toll, Crail, Arncroach, Largoward, New Gilston, Woodside and back to Ceres.">
+            <h3>Step-by-Step Places</h3>
+            <ol>
+              <li><strong>Start:</strong> <span class="landmark">Ceres</span></li>
+              <li>→ <span class="landmark">Baldinnie</span></li>
+              <li>→ <span class="landmark">Crossgates</span></li>
+              <li>→ <span class="landmark">Peat Inn</span></li>
+              <li>→ <span class="landmark">Higham Toll</span></li>
+              <li>→ <span class="landmark">Crail</span></li>
+              <li>→ <span class="landmark">Arncroach</span></li>
+              <li>→ <span class="landmark">Largoward</span></li>
+              <li>→ <span class="landmark">New Gilston</span></li>
+              <li>→ <span class="landmark">Woodside</span></li>
+              <li><strong>Finish:</strong> <span class="landmark">Ceres</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="extension" role="region" aria-labelledby="extension-title" tabindex="-1">
+        <div class="route-card">
+          <div class="route-header">
+            <h2 class="route-title" id="extension-title">Optional Extension</h2>
+            <div class="route-stats"><span class="difficulty tbc">Awaiting Recce</span></div>
+          </div>
+          <div class="listen-bar" role="group" aria-label="Audio controls for Optional Extension section">
+            <button class="btn" data-say="#extension-text">Listen to this section</button>
+          </div>
+          <div class="route-instructions" id="extension-text" data-srtext="Optional extension from Crail to Fife Ness and return to Crail.">
+            <h3>Places</h3>
+            <ol>
+              <li><span class="landmark">Crail</span></li>
+              <li>→ <span class="landmark">Fife Ness</span></li>
+              <li>→ <span class="landmark">Crail</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="short" role="region" aria-labelledby="short-title" tabindex="-1">
+        <div class="route-card">
+          <div class="route-header">
+            <h2 class="route-title" id="short-title">Shortened Version</h2>
+            <div class="route-stats"><span class="difficulty tbc">Awaiting Recce</span></div>
+          </div>
+          <div class="listen-bar" role="group" aria-label="Audio controls for Shortened Version section">
+            <button class="btn" data-say="#short-text">Listen to this section</button>
+          </div>
+          <div class="route-instructions" id="short-text" data-srtext="Shortened version: Ceres, Baldinnie, Crossgates, Peat Inn, Higham Toll on the B940, Kingsmuir Crossroads on the B9131, Spalefied Crossroads on the B9171, Kellie Castle, Arncroach, Largoward, New Gilston, Wooside, and back to Ceres.">
+            <h3>Step-by-Step Places</h3>
+            <ol>
+              <li><strong>Start:</strong> <span class="landmark">Ceres</span></li>
+              <li>→ <span class="landmark">Baldinnie</span></li>
+              <li>→ <span class="landmark">Crossgates</span></li>
+              <li>→ <span class="landmark">Peat Inn</span></li>
+              <li>→ <span class="landmark">Higham Toll</span> (<strong>B940</strong>)</li>
+              <li>→ <span class="landmark">Kingsmuir X‑Roads</span> (<strong>B9131</strong>)</li>
+              <li>→ <span class="landmark">Spalefied(?) X‑Roads</span> (<strong>B9171</strong>)</li>
+              <li>→ <span class="landmark">Kellie Castle</span></li>
+              <li>→ <span class="landmark">Arncroach</span></li>
+              <li>→ <span class="landmark">Largoward</span></li>
+              <li>→ <span class="landmark">New Gilston</span></li>
+              <li>→ <span class="landmark">Wooside</span></li>
+              <li><strong>Finish:</strong> <span class="landmark">Ceres</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="notes" role="region" aria-labelledby="notes-title" tabindex="-1">
+        <div class="route-card">
+          <div class="route-header">
+            <h2 class="route-title" id="notes-title">Notes</h2>
+          </div>
+          <div class="listen-bar" role="group" aria-label="Audio controls for Notes section">
+            <button class="btn" data-say="#notes-text">Listen to this section</button>
+          </div>
+          <div class="notes" id="notes-text" data-srtext="Distances and ascent will be added once the route has been recced. Spellings preserved from original notes.">
+            <ul>
+              <li>Distances and ascent will be added once the route has been recced.</li>
+              <li>Spelling as per original notes (e.g., “Spalefied(?)”, “Wooside”).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <p><small>Designed for accessibility (screen-reader friendly headings, keyboard focus styles, high-contrast support, and audio summary controls).</small></p>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const synth = window.speechSynthesis;
+      let currentUtterance = null;
+
+      function speak(text){
+        if(!('speechSynthesis' in window)) {
+          alert('Speech not supported in this browser.');
+          return;
+        }
+        if(currentUtterance){ synth.cancel(); }
+        currentUtterance = new SpeechSynthesisUtterance(text);
+        currentUtterance.rate = 1.0;
+        currentUtterance.pitch = 1.0;
+        currentUtterance.lang = (navigator.language || 'en-GB');
+        synth.speak(currentUtterance);
+      }
+
+      // Build page summary from key bits
+      function pageSummary(){
+        const bits = [];
+        bits.push('TTGR 58. Ceres Loops. Start and finish at Ceres Car Park. Distance and ascent awaiting recce. Grade to be confirmed.');
+        bits.push('Main Loop: Ceres, Baldinnie, Crossgates, Peat Inn, Higham Toll, Crail, Arncroach, Largoward, New Gilston, Woodside, back to Ceres.');
+        bits.push('Optional Extension: Crail to Fife Ness and return.');
+        bits.push('Shortened Version: Ceres, Baldinnie, Crossgates, Peat Inn, Higham Toll B 940, Kingsmuir crossroads B 9 1 3 1, Spalefied crossroads B 9 1 7 1, Kellie Castle, Arncroach, Largoward, New Gilston, Wooside, back to Ceres.');
+        bits.push('Notes: Distances and ascent will be added after recce; spellings preserved from the source notes.');
+        return bits.join(' ');
+      }
+
+      // Global controls
+      document.getElementById('play-summary').addEventListener('click', function(){ speak(pageSummary()); });
+      document.getElementById('pause-summary').addEventListener('click', function(){ if(synth && synth.speaking && !synth.paused){ synth.pause(); } });
+      document.getElementById('resume-summary').addEventListener('click', function(){ if(synth && synth.paused){ synth.resume(); } });
+      document.getElementById('stop-summary').addEventListener('click', function(){ if(synth){ synth.cancel(); } });
+
+      // Section-level buttons
+      document.querySelectorAll('[data-say]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          const sel = btn.getAttribute('data-say');
+          const el = document.querySelector(sel);
+          if(!el) return;
+          // Prefer a concise screen-reader text summary if provided
+          const srtext = el.getAttribute('data-srtext');
+          const text = srtext ? srtext : el.innerText;
+          speak(text);
+          // Move focus to the section for screen-reader and keyboard users
+          const region = btn.closest('[role="region"]');
+          if(region){ region.focus(); }
+        });
+      });
+
+      // Stop speech on page unload (polite)
+      window.addEventListener('beforeunload', function(){ if(synth){ synth.cancel(); } });
+    })();
+  </script>
+</body>
+</html>

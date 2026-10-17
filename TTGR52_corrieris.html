@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TTGR52 – Corrieri&apos;s Ride</title>
+  <style>
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;max-width:1200px;margin:0 auto;padding:20px;background:#f5f5f5;color:#333}
+    .container{background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    h1{color:#2c5530;font-size:2.5em;margin-bottom:20px;border-bottom:3px solid #4CAF50;padding-bottom:10px}
+    h2{color:#2c5530;font-size:1.8em;margin:30px 0 15px;border-left:4px solid #4CAF50;padding-left:15px}
+    h3{color:#2c5530;font-size:1.3em;margin:20px 0 10px}
+    p{margin:0 0 0.6em;}
+    .route-card{background:#f8f9fa;border:2px solid #4CAF50;border-radius:8px;padding:20px;margin:20px 0;position:relative}
+    .route-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .route-title{font-size:1.25em;font-weight:700;color:#2c5530}
+    .route-stats{background:#4CAF50;color:#fff;padding:8px 15px;border-radius:20px;font-weight:700}
+    .difficulty{display:inline-block;padding:5px 12px;border-radius:15px;font-weight:700;margin-left:10px}
+    .moderate{background:#ff9800;color:#fff}
+    .difficult{background:#f44336;color:#fff}
+    .route-instructions{background:#fff;border-left:4px solid #4CAF50;padding:15px;margin:15px 0}
+    .route-instructions ol{margin:0;padding-left:20px}
+    .route-instructions li{margin-bottom:10px}
+    .landmark{font-weight:700;color:#2c5530}
+    .notes{background:#fff3cd;border:1px solid #ffeaa7;border-radius:5px;padding:15px;margin:20px 0}
+    .notes h3{color:#856404;margin-top:0}
+    .notes ul{margin:10px 0;padding-left:20px}
+    .notes li{margin-bottom:6px}
+    .skip-link{position:absolute;top:-40px;left:6px;background:#2c5530;color:#fff;padding:8px;text-decoration:none;border-radius:4px;z-index:100}
+    .skip-link:focus{top:6px}
+    .navigation{background:#e8f5e8;border-radius:8px;padding:20px;margin:20px 0}
+    .navigation h2{margin-top:0}
+    .navigation ul{list-style:none;padding:0}
+    .navigation li{margin-bottom:10px}
+    .navigation a{color:#2c5530;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:5px;display:inline-block;transition:background-color .3s}
+    .navigation a:hover,.navigation a:focus{background:#4CAF50;color:#fff;outline:2px solid #2c5530}
+    @media (max-width:768px){body{padding:10px}.container{padding:20px}.route-header{flex-direction:column;align-items:flex-start}.route-stats{margin-top:10px}}
+    @media (prefers-contrast:high){body{background:#fff;color:#000}.container{border:2px solid #000}h1,h2,h3{color:#000}}
+    @media (prefers-reduced-motion:reduce){.navigation a{transition:none}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="container">
+    <header>
+      <h1 id="main-content">TTGR52 – Corrieri&apos;s Ride</h1>
+      <p><strong>A long, hilly loop north of Dunfermline, taking in the Hillfoots, Stirling and a café stop at Corrieri&apos;s, with an alternative route starting from Saline.</strong></p>
+      <p><strong>Main Start/Finish:</strong> <span class="landmark">Home</span> (Dunfermline area)</p>
+      <p><strong>Alternative Start/Finish:</strong> <span class="landmark">Saline Bus Terminus &amp; Car Park</span></p>
+    </header>
+
+    <nav class="navigation" aria-label="Route navigation">
+      <h2>Quick Navigation</h2>
+      <ul>
+        <li><a href="#overview">Route Overview</a></li>
+        <li><a href="#main-route">Main Route – from Home (85 km)</a></li>
+        <li><a href="#alt-route">Alternative TTGR Route – from Saline (55 km)</a></li>
+        <li><a href="#notes">Notes</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="overview">
+        <h2>Route Overview</h2>
+        <ul>
+          <li><strong>Main Route Distance:</strong> 85 km (approx.)</li>
+          <li><strong>Alternative Route Distance:</strong> 55 km</li>
+          <li><strong>Grade (overall):</strong> <span class="difficulty moderate">Moderately Difficult</span> – <span class="difficulty difficult">Difficult</span></li>
+          <li><strong>Key Features:</strong> Knockhill climbs, Hillfoots villages, Stirling/Corrieri&apos;s café stop, and a choice of long or shorter loop.</li>
+        </ul>
+      </section>
+
+      <section id="main-route">
+        <div class="route-card">
+          <div class="route-header">
+            <div class="route-title">Main Route – from Home</div>
+            <div class="route-stats">
+              85 km (approx.)
+              <span class="difficulty moderate">Moderately Difficult</span>
+              <span class="difficulty difficult">to Difficult</span>
+            </div>
+          </div>
+          <div class="route-instructions">
+            <h3>Step-by-Step Places</h3>
+            <ol>
+              <li><strong>Start:</strong> <span class="landmark">Home</span></li>
+              <li>→ <span class="landmark">Bellyeoman</span></li>
+              <li>→ <span class="landmark">Townhill</span></li>
+              <li>→ <span class="landmark">Bowershall</span></li>
+              <li>→ <span class="landmark">Knockhill Crossroads</span></li>
+              <li>→ <span class="landmark">Saline</span></li>
+              <li>→ <span class="landmark">Solsgirth</span></li>
+              <li>→ <span class="landmark">Sheardale</span></li>
+              <li>→ <span class="landmark">Coalsnaughton</span></li>
+              <li>→ <span class="landmark">Fishcross</span></li>
+              <li>→ <span class="landmark">Glenochil Village</span></li>
+              <li>→ <span class="landmark">Menstrie</span></li>
+              <li>→ <span class="landmark">Blairlogie</span></li>
+              <li>→ <span class="landmark">Logie Kirk Roundabout</span></li>
+              <li>→ <span class="landmark">Causewayhead</span> (<span class="landmark">Corrieri&apos;s</span> café)</li>
+              <li>→ <span class="landmark">Manor Powis Roundabout</span></li>
+              <li>→ <span class="landmark">Logie Kirk Roundabout</span></li>
+              <li>→ <span class="landmark">Blairlogie</span></li>
+              <li>→ <span class="landmark">Hillfoots</span></li>
+              <li>→ <span class="landmark">Tillicoultry</span></li>
+              <li>→ <span class="landmark">Dollar</span></li>
+              <li>→ <span class="landmark">Muckhart Golf Club</span></li>
+              <li>→ <span class="landmark">Rumbling Bridge</span></li>
+              <li>→ <span class="landmark">Powmill</span></li>
+              <li>→ <span class="landmark">Knockhill</span></li>
+              <li>→ <span class="landmark">Knockhill Crossroads</span></li>
+              <li>→ <span class="landmark">Wellwood</span></li>
+              <li><strong>Finish:</strong> <span class="landmark">Home</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="alt-route">
+        <div class="route-card">
+          <div class="route-header">
+            <div class="route-title">Alternative TTGR Route – from Saline</div>
+            <div class="route-stats">
+              55 km
+              <span class="difficulty moderate">Moderately Difficult</span>
+            </div>
+          </div>
+          <div class="route-instructions">
+            <h3>Step-by-Step Places</h3>
+            <ol>
+              <li><strong>Start:</strong> <span class="landmark">Saline Bus Terminus &amp; Car Park</span></li>
+              <li>→ <span class="landmark">Solsgirth</span></li>
+              <li>→ <span class="landmark">Sheardale</span></li>
+              <li>→ <span class="landmark">Coalsnaughton</span></li>
+              <li>→ <span class="landmark">Fishcross</span></li>
+              <li>→ <span class="landmark">Glenochil Village</span></li>
+              <li>→ <span class="landmark">Menstrie</span></li>
+              <li>→ <span class="landmark">Blairlogie</span></li>
+              <li>→ <span class="landmark">Logie Kirk Roundabout</span></li>
+              <li>→ <span class="landmark">Causewayhead</span> (<span class="landmark">Corrieri&apos;s</span> café)</li>
+              <li>→ <span class="landmark">Manor Powis Roundabout</span></li>
+              <li>→ <span class="landmark">Logie Kirk Roundabout</span></li>
+              <li>→ <span class="landmark">Blairlogie</span></li>
+              <li>→ <span class="landmark">Hillfoots</span></li>
+              <li>→ <span class="landmark">Tillicoultry</span></li>
+              <li>→ <span class="landmark">Dollar</span></li>
+              <li>→ <span class="landmark">Solsgirth</span></li>
+              <li>→ <span class="landmark">East Muirhead</span></li>
+              <li>→ <span class="landmark">Shieldbank</span></li>
+              <li><strong>Finish:</strong> <span class="landmark">Saline Bus Terminus &amp; Car Park</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="notes">
+        <div class="notes">
+          <h3>Notes</h3>
+          <ul>
+            <li>A variation of the main route was ridden on <strong>30/08/2024</strong>: outward via the main route to Corrieri&apos;s (~43 km), 
+                returning from <span class="landmark">Dollar</span> via <span class="landmark">Solsgirth</span>, <span class="landmark">Saline</span> and <span class="landmark">Oakley</span> (~40 km).</li>
+            <li><strong>Corrieri&apos;s café is closed on Tuesdays</strong> – avoid planning this ride for a Tuesday if you want to use Corrieri&apos;s as the main stop.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><small>Designed for accessibility (screen-reader friendly headings, keyboard focus styles, and high-contrast support).</small></p>
+    </footer>
+  </div>
+</body>
+</html>

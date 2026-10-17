@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loch Leven – Dunning Loop (2) - Accessible Cycling Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c5530;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2c5530;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #2c5530;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .route-card {
+            background-color: #f8f9fa;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .route-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c5530;
+        }
+        
+        .route-stats {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .difficult {
+            background-color: #f44336;
+            color: white;
+        }
+        .very-difficult {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        .route-instructions {
+            background-color: white;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .route-instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .route-instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .landmark {
+            font-weight: bold;
+            color: #2c5530;
+        }
+        
+        .road {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .notes {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .notes h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .notes ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .notes li {
+            margin-bottom: 8px;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #2c5530;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 100;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        .navigation {
+            background-color: #e8f5e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .navigation h2 {
+            margin-top: 0;
+        }
+        
+        .navigation ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .navigation li {
+            margin-bottom: 10px;
+        }
+        
+        .navigation a {
+            color: #2c5530;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .navigation a:hover,
+        .navigation a:focus {
+            background-color: #4CAF50;
+            color: white;
+            outline: 2px solid #2c5530;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .route-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .route-stats {
+                margin-top: 10px;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .container {
+                border: 2px solid black;
+            }
+            
+            h1, h2, h3 {
+                color: black;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .navigation a {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div class="container">
+        <header>
+            <h1 id="main-content">Loch Leven – Dunning Loop (2)</h1>
+            <p><strong>Accessible cycling guide for a challenging loop to Dunning, with two return options: via Glenfarg (Difficult) or via Wicks O’ Baiglie (Very Difficult).</strong></p>
+        </header>
+
+        <nav class="navigation" role="navigation" aria-label="Route navigation">
+            <h2>Quick Navigation</h2>
+            <ul>
+                <li><a href="#overview">Route Overview</a></li>
+                <li><a href="#start-finish">Start &amp; Finish Point</a></li>
+                <li><a href="#basic-route">Route (~72 km)</a></li>
+                <li><a href="#lunch">Lunch Options</a></li>
+                <li><a href="#notes">Important Notes</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="overview">
+                <h2>Route Overview</h2>
+                <ul>
+                    <li><strong>Distance:</strong> ~72 km</li>
+                    <li><strong>Grade:</strong> <span class="difficulty difficult">Difficult</span> (via Glenfarg); <span class="difficulty very-difficult">Very Difficult</span> (via Wicks O’ Baiglie)</li>
+                </ul>
+                <p>Outbound through quiet lanes to <span class="landmark">Dunning</span> for lunch, then choose your return climb: the steadier <span class="landmark">Glenfarg</span> or the longer, steeper <span class="landmark">Wicks O’ Baiglie</span>.</p>
+            </section>
+
+            <section id="start-finish">
+                <h2>Start and Finish Point</h2>
+                <p><strong>Location:</strong> <span class="landmark">Findatie Car Park</span> (south end of <span class="landmark">Loch Leven</span>)</p>
+            </section>
+
+            <section id="basic-route">
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-title">Loch Leven – Dunning Loop (2)</div>
+                        <div class="route-stats">
+                            <span>~72 km</span>
+                            <span class="difficulty difficult">Difficult</span> / <span class="difficulty very-difficult">Very Difficult</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-instructions">
+                        <h3>Step-by-Step Directions</h3>
+                        <ol>
+                            <li><strong>Start:</strong> <span class="landmark">Findatie</span></li>
+                            <li>Head to <span class="landmark">Cleish</span></li>
+                            <li>Continue through <span class="landmark">Crook of Devon</span></li>
+                            <li>Ride via <span class="landmark">Lendrick Muir</span></li>
+                            <li>Proceed to <span class="landmark">Rumbling Bridge</span></li>
+                            <li>Continue to <span class="landmark">Yetts O’ Muckhart</span></li>
+                            <li>Reach <span class="landmark">Dunning</span> (lunch)</li>
+                            <li>Ride via <span class="landmark">Invermay</span></li>
+                            <li>Continue to <span class="landmark">Forgandenny</span></li>
+                            <li>Head to <span class="landmark">Kintillo</span></li>
+                            <li>Choose return:
+                                <ul>
+                                    <li><span class="landmark">Glenfarg</span> route</li>
+                                    <li><span class="landmark">Wicks O’ Baiglie</span> route</li>
+                                </ul>
+                            </li>
+                            <li>Continue to <span class="landmark">Mawcarse</span></li>
+                            <li>Proceed to <span class="landmark">Balgedie</span></li>
+                            <li>Ride through <span class="landmark">Kinnesswood</span></li>
+                            <li>Continue to <span class="landmark">Scotlandwell</span></li>
+                            <li><strong>Finish:</strong> Return to <span class="landmark">Findatie</span></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lunch">
+                <h2>Lunch Options</h2>
+                <ul>
+                    <li><span class="landmark">The Tee Room</span> at <span class="landmark">Dunning Golf Club</span> — an excellent lunch venue.</li>
+                </ul>
+            </section>
+
+            <section id="notes">
+                <div class="notes">
+                    <h3>Important Notes and Warnings</h3>
+                    <ul>
+                        <li><strong>Glenfarg Ascent:</strong> Requires care — avoid bunching — but is not as hazardous as it may seem.</li>
+                        <li><strong>Wicks O’ Baiglie:</strong> Preferred by some for safety, but longer and much more challenging, with a particularly brutal initial ramp.</li>
+                        <li><strong>Related route:</strong> <span class="highlight">TTGR08</span> is more or less the reverse of this loop: easier around <span class="landmark">Glenfarg</span> but a much tougher climb over <span class="landmark">Dunning Glen</span> from the north.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><small>This guide is designed with accessibility in mind for visually impaired cyclists. Use screen readers and keyboard navigation for optimal experience.</small></p>
+        </footer>
+    </div>
+</body>
+</html>
