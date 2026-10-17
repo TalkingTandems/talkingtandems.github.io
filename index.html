@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10241a">
+  <meta name="description" content="Talking Tandems group cycling routes, ride information and GPX resources.">
+  <title>Group Runs Library | Talking Tandems</title>
+  <style>
+    :root{--dark:#10241a;--green:#103b27;--accent:#176a3c;--pale:#f1f7f0;--line:#d6e5d7;--text:#183626}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--pale);line-height:1.55}
+    a{color:#145c36}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #f5b942;outline-offset:3px}
+    .skip{position:absolute;left:1rem;top:-5rem;background:white;padding:.6rem;z-index:10}.skip:focus{top:1rem}
+    header{background:var(--dark);color:white;padding:1.2rem max(1.2rem,calc((100vw - 1100px)/2))}header .brand{font-size:clamp(1.5rem,4vw,2.3rem);font-weight:750;color:#b8dfba;letter-spacing:.01em}header p{margin:.1rem 0 .8rem;color:#e0eee1}header a{color:#fff;text-underline-offset:4px}
+    main{max-width:1100px;margin:0 auto;padding:2rem 1.2rem 4rem}h1{color:var(--green);font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;margin:0 0 .7rem}h2{color:var(--green);font-size:1.25rem;margin:0}p.lead{max-width:780px;margin:.2rem 0 1.5rem}
+    .controls{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.5rem 0;align-items:end}.control{display:flex;flex-direction:column;gap:.3rem;flex:1 1 230px}.control label{font-weight:650}.control input,.control select{font:inherit;width:100%;padding:.75rem;border:1px solid #9bb69f;border-radius:8px;background:white;color:var(--text)}
+    .count{font-size:.95rem;color:#345a42;margin:0 0 .8rem}.routes{display:grid;gap:.8rem}.route{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.25rem;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) auto;align-items:center;gap:1rem;box-shadow:0 2px 7px #10241a0b}.route h2{margin:0 0 .25rem}.route p{margin:0;color:#405d4a;font-size:.95rem}.facts{font-size:.92rem}.facts strong{display:block;color:var(--green)}.action{display:inline-block;background:var(--green);color:white;text-decoration:none;border-radius:8px;padding:.7rem 1rem;font-weight:650;white-space:nowrap;text-align:center}.action:hover{background:#1b6040}.soon{color:#526958;font-weight:600;font-size:.9rem}.notice{background:#e4f0e3;border-left:4px solid var(--accent);padding:1rem 1.2rem;margin:1.8rem 0;border-radius:4px}.notice p{margin:.3rem 0}.empty{display:none;background:#fff;padding:1.5rem;border-radius:10px}footer{background:var(--dark);color:#e0eee1;padding:1.5rem;text-align:center}footer a{color:#fff}
+    @media(max-width:650px){main{padding:1.5rem 1rem 3rem}.route{grid-template-columns:1fr;gap:.7rem}.action{width:100%}.facts strong{display:inline}.facts strong:after{content:' · '}.route{padding:1rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to route library</a>
+<header>
+  <div class="brand">Talking Tandems</div>
+  <p>Cycling together — sighted and visually impaired cyclists</p>
+  <nav aria-label="Site navigation"><a href="https://lesstephenson11.wixsite.com/talkingtandems" id="main-site-link">Talking Tandems website ↗</a></nav>
+</header>
+<main id="main">
+  <h1>Group Runs Library</h1>
+  <p class="lead">Discover our group cycling routes, including distances, difficulty ratings, turn-by-turn directions and safety notes. Detailed route pages open here in the Talking Tandems route library.</p>
+  <div class="controls" role="search" aria-label="Find a route">
+    <div class="control"><label for="search">Search routes</label><input id="search" type="search" placeholder="e.g. Campsie, Sheriffmuir, café" autocomplete="off"></div>
+    <div class="control"><label for="difficulty">Difficulty</label><select id="difficulty"><option value="all">All difficulties</option><option value="moderate">Moderate</option><option value="difficult">Difficult</option><option value="very difficult">Very difficult</option></select></div>
+  </div>
+  <p class="count" id="count" aria-live="polite">6 routes</p>
+  <div class="routes" id="routes">
+    <article class="route" data-search="campsie hills basic auchinstarry tak ma doon crow road" data-difficulty="moderate difficult">
+      <div><h2>Campsie Hills — Basic</h2><p>Auchinstarry Marina · Tak Ma Doon and Crow Road</p></div><div class="facts"><strong>40 km</strong> Moderate–Difficult</div><a class="action" href="campsie_hills_routes.html#basic-route" aria-label="View Campsie Hills Basic route">View route →</a>
+    </article>
+    <article class="route" data-search="campsie hills extended auchinstarry tak ma doon crow road top o the world" data-difficulty="difficult very difficult">
+      <div><h2>Campsie Hills — Extended</h2><p>Auchinstarry Marina · Adds Top O’ The World</p></div><div class="facts"><strong>65 km</strong> Difficult–Very Difficult</div><a class="action" href="campsie_hills_routes.html#extended-route" aria-label="View Campsie Hills Extended route">View route →</a>
+    </article>
+    <article class="route" data-search="sheriffmuir loop powmill" data-difficulty="very difficult">
+      <div><h2>Sheriffmuir Loop</h2><p>Powmill · Challenging climbing</p></div><div class="facts"><strong>Approx. 72 km</strong> Very Difficult</div><span class="soon">Coming soon</span>
+    </article>
+    <article class="route" data-search="buttercup cafe café loop dunshalt newburgh" data-difficulty="moderate">
+      <div><h2>Buttercup Café Loop</h2><p>Dunshalt · Newburgh café stop</p></div><div class="facts"><strong>Approx. 45 km</strong> Moderate</div><span class="soon">Coming soon</span>
+    </article>
+    <article class="route" data-search="old forth bridge dalgety bay loop" data-difficulty="moderate">
+      <div><h2>Old Forth Bridge Loop</h2><p>Dalgety Bay · Winchburgh and Kirkliston</p></div><div class="facts"><strong>Approx. 40 km</strong> Moderate</div><span class="soon">Coming soon</span>
+    </article>
+    <article class="route" data-search="west fife extended dalgety bay oakley crombie limekilns" data-difficulty="difficult">
+      <div><h2>West Fife Extended Loop</h2><p>Dalgety Bay · Oakley, Crombie Point and Limekilns</p></div><div class="facts"><strong>Distance to confirm</strong> Difficult</div><span class="soon">Coming soon</span>
+    </article>
+  </div>
+  <p id="empty" class="empty">No routes match your search. Try another name or difficulty.</p>
+  <aside class="notice" aria-label="Route safety information"><strong>Before you ride</strong><p>Route descriptions are guides, not a substitute for checking current road conditions, weather and access restrictions. Take extra care on steep descents and tandem-unfriendly barriers.</p><p>GPX downloads will be added to individual route pages where available.</p></aside>
+</main>
+<footer>Talking Tandems · Group Runs Library</footer>
+<script>
+(function(){
+  const search=document.getElementById('search');const difficulty=document.getElementById('difficulty');const routes=[...document.querySelectorAll('.route')];const count=document.getElementById('count');const empty=document.getElementById('empty');
+  function update(){const term=search.value.trim().toLocaleLowerCase();const diff=difficulty.value;let shown=0;routes.forEach(route=>{const match=(!term||route.dataset.search.includes(term)||route.querySelector('h2').textContent.toLocaleLowerCase().includes(term))&&(diff==='all'||route.dataset.difficulty.includes(diff));route.hidden=!match;route.style.display=match?'':'none';if(match)shown++});count.textContent=shown+' '+(shown===1?'route':'routes');empty.style.display=shown?'none':'block'}
+  search.addEventListener('input',update);difficulty.addEventListener('change',update);update();
+})();
+</script>
+</body>
+</html>
