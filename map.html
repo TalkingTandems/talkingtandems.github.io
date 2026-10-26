@@ -1,49 +1,33 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Talking Tandems Route Map</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<style>
-html,body{height:100%;margin:0;font-family:Arial,sans-serif}header{background:#155c3b;color:white;padding:12px 18px}
-h1{font-size:1.25rem;margin:0}#status{padding:8px 18px;background:#f4f7f4}#map{height:calc(100% - 108px)}
-.leaflet-container{background:#e5eee8}a{color:#075b36}
-</style></head><body>
-<header><h1 id="title">Talking Tandems · Route Map</h1></header>
-<div id="status" role="status" aria-live="polite">Loading route…</div><div id="map" aria-label="Interactive route map"></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-const map=L.map('map');map.setView([56.08,-3.4],11);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-const params=new URLSearchParams(location.search);
-const filename=params.get('gpx')||'Findatie Loch Loop.gpx';
-const status=document.getElementById('status');
-if(filename.includes('/')||filename.includes('\\')||!filename.toLowerCase().endsWith('.gpx')){
- status.textContent='Invalid GPX filename.';
-}else{
- document.getElementById('title').textContent='Talking Tandems · '+filename.replace(/\.gpx$/i,'');
- fetch(filename).then(r=>{if(!r.ok)throw Error('GPX file not found ('+r.status+')');return r.text()})
- .then(s=>{
- const doc=new DOMParser().parseFromString(s,'application/xml');
- if(doc.querySelector('parsererror'))throw Error('Invalid GPX XML');
- let lines=[];
- const tracks=[...doc.getElementsByTagNameNS('*','trkseg')];
- for(const seg of tracks){
- const pts=[...seg.getElementsByTagNameNS('*','trkpt')].map(p=>[+p.getAttribute('lat'),+p.getAttribute('lon')]).filter(p=>p.every(Number.isFinite));
- if(pts.length)lines.push(pts);
- }
- if(!lines.length){
- const pts=[...doc.getElementsByTagNameNS('*','rtept')].map(p=>[+p.getAttribute('lat'),+p.getAttribute('lon')]).filter(p=>p.every(Number.isFinite));
- if(pts.length)lines.push(pts);
- }
- if(!lines.length)throw Error('No track or route points in GPX');
- const all=lines.flat();
- for(const line of lines){
- L.polyline(line,{color:'white',weight:9,opacity:.95}).addTo(map);
- L.polyline(line,{color:'#d6006d',weight:5,opacity:1}).addTo(map);
- }
- L.circleMarker(all[0],{radius:9,color:'white',weight:2,fillColor:'#16803c',fillOpacity:1}).bindPopup('Start').addTo(map);
- L.circleMarker(all[all.length-1],{radius:9,color:'white',weight:2,fillColor:'#1657a1',fillOpacity:1}).bindPopup('Finish').addTo(map);
- map.fitBounds(L.latLngBounds(all),{padding:[30,30]});
- status.textContent='Route loaded · '+all.length+' points · Green = start · Blue = finish';
- }).catch(e=>status.textContent='Could not load route: '+e.message+'. Open this page from GitHub Pages (not directly as a local file).');
-}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Talking Tandems · Route Map</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><style>
+*{box-sizing:border-box}body{margin:0;font:16px system-ui,Arial;color:#19362b;background:#f5f8f5}header{background:#155c3b;color:white;padding:13px 18px}h1{margin:0;font-size:1.25rem}.wrap{max-width:1200px;margin:auto;padding:12px}#status{margin:0 0 10px}#map{height:55vh;min-height:310px;border-radius:8px}.stats{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}.stat{background:white;padding:9px 13px;border-radius:7px;border:1px solid #dce5df}.chartbox{background:white;border:1px solid #dce5df;border-radius:8px;padding:12px}h2{font-size:1.1rem;margin:0 0 6px}#profile{display:block;width:100%;height:220px;touch-action:pan-y}.note{font-size:.85rem;color:#53665c}.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.85rem;margin-top:8px}.swatch{display:inline-block;width:15px;height:9px;margin-right:4px}.leaflet-container{background:#e8f0ea}</style></head><body><header><h1 id="title">Talking Tandems · Route Map</h1></header><main class="wrap"><p id="status" role="status" aria-live="polite">Loading GPX route…</p><div id="map" aria-label="Interactive route map"></div><div id="stats" class="stats"></div><section class="chartbox"><h2>Elevation profile and gradient</h2><svg id="profile" role="img" aria-label="Elevation profile by distance; hover or tap to inspect a point" viewBox="0 0 900 220" preserveAspectRatio="none"></svg><div id="readout" aria-live="polite">Move over the profile to inspect the route.</div><p class="note">Gradient is estimated over approximately 200 metres to reduce GPS elevation noise. Elevation and ascent depend on the accuracy of the GPX data.</p><div class="legend"><span><i class="swatch" style="background:#d6006d"></i>Route</span><span><i class="swatch" style="background:#16803c"></i>Start</span><span><i class="swatch" style="background:#1657a1"></i>Finish</span></div></section></main><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
+const map=L.map('map').setView([56.08,-3.4],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const q=new URLSearchParams(location.search),file=q.get('gpx')||'Findatie Loch Loop.gpx',status=document.getElementById('status'),svg=document.getElementById('profile'),readout=document.getElementById('readout');
+const rad=Math.PI/180;function metres(a,b){const dlat=(b.lat-a.lat)*rad,dlon=(b.lon-a.lon)*rad;const x=Math.sin(dlat/2)**2+Math.cos(a.lat*rad)*Math.cos(b.lat*rad)*Math.sin(dlon/2)**2;return 12742000*Math.asin(Math.sqrt(x));}
+function el(tag,attrs={}){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);return e;}
+if(file.includes('/')||file.includes('\\')||!file.toLowerCase().endsWith('.gpx'))status.textContent='Invalid GPX filename.';else{
+document.getElementById('title').textContent='Talking Tandems · '+file.replace(/\.gpx$/i,'');
+fetch(file).then(r=>{if(!r.ok)throw Error('GPX not found ('+r.status+')');return r.text()}).then(xml=>{
+const doc=new DOMParser().parseFromString(xml,'application/xml');if(doc.querySelector('parsererror'))throw Error('Invalid GPX XML');
+let segments=[...doc.getElementsByTagNameNS('*','trkseg')].map(s=>[...s.getElementsByTagNameNS('*','trkpt')]);if(!segments.length)segments=[[...doc.getElementsByTagNameNS('*','rtept')]];
+let pts=[],lines=[];for(const seg of segments){const line=[];for(const n of seg){const lat=Number(n.getAttribute('lat')),lon=Number(n.getAttribute('lon'));const e=n.getElementsByTagNameNS('*','ele')[0];const ele=e?Number(e.textContent):NaN;if(!Number.isFinite(lat)||!Number.isFinite(lon))continue;const point={lat,lon,ele,d:0};pts.push(point);line.push([lat,lon]);}if(line.length)lines.push(line);}
+if(pts.length<2)throw Error('No usable route points');for(let i=1;i<pts.length;i++)pts[i].d=pts[i-1].d+metres(pts[i-1],pts[i]);
+for(const line of lines){L.polyline(line,{color:'#fff',weight:9}).addTo(map);L.polyline(line,{color:'#d6006d',weight:5}).addTo(map)}
+L.circleMarker([pts[0].lat,pts[0].lon],{radius:8,color:'white',weight:2,fillColor:'#16803c',fillOpacity:1}).bindPopup('Start').addTo(map);
+L.circleMarker([pts.at(-1).lat,pts.at(-1).lon],{radius:8,color:'white',weight:2,fillColor:'#1657a1',fillOpacity:1}).bindPopup('Finish').addTo(map);map.fitBounds(L.latLngBounds(lines.flat()),{padding:[25,25]});
+const elev=pts.filter(p=>Number.isFinite(p.ele));const km=pts.at(-1).d/1000;let ascent=0,descent=0;
+// Smooth raw elevations over a ~100 m distance window before ascent calculation.
+const smooth=pts.map(p=>{let total=0,n=0;for(const a of pts){if(Math.abs(a.d-p.d)<=50&&Number.isFinite(a.ele)){total+=a.ele;n++}}return n?total/n:NaN});
+for(let i=1;i<pts.length;i++){const delta=smooth[i]-smooth[i-1];if(Number.isFinite(delta)){if(delta>0)ascent+=delta;else descent-=delta}}
+const stats=document.getElementById('stats');for(const [label,value] of [['Distance',km.toFixed(1)+' km'],['Estimated ascent',elev.length?Math.round(ascent)+' m':'Unavailable'],['Estimated descent',elev.length?Math.round(descent)+' m':'Unavailable'],['Elevation range',elev.length?Math.round(Math.min(...elev.map(p=>p.ele)))+'–'+Math.round(Math.max(...elev.map(p=>p.ele)))+' m':'Unavailable']]){const b=document.createElement('div');b.className='stat';b.textContent=label+': '+value;stats.append(b)}
+status.textContent='Route loaded · '+pts.length+' points';if(elev.length<2){readout.textContent='This GPX does not contain enough elevation data.';return}
+const W=900,H=220,L=52,R=15,T=12,B=34,min=Math.min(...elev.map(p=>p.ele)),max=Math.max(...elev.map(p=>p.ele)),lo=Math.floor((min-10)/20)*20,hi=Math.ceil((max+10)/20)*20;
+const X=p=>L+(p.d/pts.at(-1).d)*(W-L-R),Y=p=>T+(hi-p.ele)/(hi-lo)*(H-T-B);
+for(let k=0;k<=4;k++){const val=lo+(hi-lo)*k/4,y=T+(H-T-B)*(1-k/4);svg.append(el('line',{x1:L,x2:W-R,y1:y,y2:y,stroke:'#dce5df'}));const t=el('text',{x:4,y:y+4,'font-size':12,fill:'#52645a'});t.textContent=Math.round(val)+' m';svg.append(t)}
+for(let k=0;k<=5;k++){const x=L+(W-L-R)*k/5,t=el('text',{x,y:H-9,'text-anchor':'middle','font-size':12,fill:'#52645a'});t.textContent=(km*k/5).toFixed(1)+' km';svg.append(t)}
+const valid=pts.filter(p=>Number.isFinite(p.ele));const poly=el('polyline',{points:valid.map(p=>X(p).toFixed(1)+','+Y(p).toFixed(1)).join(' '),fill:'none',stroke:'#d6006d','stroke-width':3,'stroke-linejoin':'round'});svg.append(poly);
+const cursor=el('line',{y1:T,y2:H-B,stroke:'#155c3b','stroke-width':2,visibility:'hidden'}),dot=el('circle',{r:5,fill:'#155c3b',stroke:'white','stroke-width':2,visibility:'hidden'});svg.append(cursor,dot);
+const marker=L.circleMarker([pts[0].lat,pts[0].lon],{radius:8,color:'white',weight:2,fillColor:'#d6006d',fillOpacity:1}).addTo(map);
+function inspect(ev){const rect=svg.getBoundingClientRect(),px=(ev.clientX-rect.left)/rect.width*W,d=Math.max(0,Math.min(pts.at(-1).d,(px-L)/(W-L-R)*pts.at(-1).d));let i=0;while(i<pts.length-1&&pts[i].d<d)i++;const p=pts[i];let a=i,b=i;while(a>0&&pts[i].d-pts[a].d<100)a--;while(b<pts.length-1&&pts[b].d-pts[i].d<100)b++;const rise=smooth[b]-smooth[a],run=pts[b].d-pts[a].d,grade=run>10&&Number.isFinite(rise)?(rise/run*100).toFixed(1)+'%':'N/A';cursor.setAttribute('x1',X(p));cursor.setAttribute('x2',X(p));cursor.setAttribute('visibility','visible');dot.setAttribute('cx',X(p));dot.setAttribute('cy',Y(p));dot.setAttribute('visibility','visible');readout.textContent=(p.d/1000).toFixed(2)+' km · Elevation '+Math.round(p.ele)+' m · Approx. gradient '+grade;marker.setLatLng([p.lat,p.lon]);}
+svg.addEventListener('pointermove',inspect);svg.addEventListener('pointerdown',inspect);
+}).catch(err=>status.textContent='Could not load route: '+err.message+'. Publish both files together on GitHub Pages; local file previews cannot fetch GPX.');}
 </script></body></html>
