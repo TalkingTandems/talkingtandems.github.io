@@ -24,7 +24,52 @@
       "source": "",
       "lat": 56.291314,
       "lon": -2.966767
+    },
+    {
+      "id": "photo-1793314372713-850676",
+      "name": "Leuchars",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Leuchars_-_geograph.org.uk_-_2679446.jpg/500px-Leuchars_-_geograph.org.uk_-_2679446.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "url": "https://commons.wikimedia.org/wiki/File:Leuchars_-_geograph.org.uk_-_2679446.jpg",
+      "source": "Wikimedia Commons · CC BY-SA 2.0 · David Dixon ",
+      "lat": 56.376841,
+      "lon": -2.8674
+    },
+    {
+      "id": "photo-1793314373897-966866",
+      "name": "Cupar",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Bonny_Gate%2C_Cupar_-_geograph.org.uk_-_199274.jpg/500px-Bonny_Gate%2C_Cupar_-_geograph.org.uk_-_199274.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "url": "https://commons.wikimedia.org/wiki/File:Bonny_Gate,_Cupar_-_geograph.org.uk_-_199274.jpg",
+      "source": "Wikimedia Commons · CC BY-SA 2.0 · Jim Bain",
+      "lat": 56.320294,
+      "lon": -3.009287
+    },
+    {
+      "id": "photo-1793314374929-294674",
+      "name": "Ceres Fife",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/C8_%28Fife%29_Road_towards_Ceres_-_geograph.org.uk_-_6989224.jpg/500px-C8_%28Fife%29_Road_towards_Ceres_-_geograph.org.uk_-_6989224.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "url": "https://commons.wikimedia.org/wiki/File:C8_(Fife)_Road_towards_Ceres_-_geograph.org.uk_-_6989224.jpg",
+      "source": "Wikimedia Commons · CC BY-SA 2.0 · Scott Cormie ",
+      "lat": 56.291413,
+      "lon": -2.967038
+    },
+    {
+      "id": "photo-1793314375761-143006",
+      "name": "Peat Inn",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/The_Peat_Inn%2C_Peat_Inn_-_geograph.org.uk_-_724638.jpg/500px-The_Peat_Inn%2C_Peat_Inn_-_geograph.org.uk_-_724638.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "url": "https://commons.wikimedia.org/wiki/File:The_Peat_Inn,_Peat_Inn_-_geograph.org.uk_-_724638.jpg",
+      "source": "Wikimedia Commons · CC BY-SA 2.0 · Gordon Brown",
+      "lat": 56.279492,
+      "lon": -2.884632
+    },
+    {
+      "id": "photo-1793314376549-836445",
+      "name": "Leuchars",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Main_Street%2C_Leuchars_-_geograph.org.uk_-_355751.jpg/500px-Main_Street%2C_Leuchars_-_geograph.org.uk_-_355751.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "url": "https://commons.wikimedia.org/wiki/File:Main_Street,_Leuchars_-_geograph.org.uk_-_355751.jpg",
+      "source": "Wikimedia Commons · CC BY-SA 2.0 · Jim Bain",
+      "lat": 56.373497,
+      "lon": -2.887097
     }
   ],
-  "updated": "2026-10-29T19:31:34.352Z"
+  "updated": "2026-10-29T22:53:30.015Z"
 }
