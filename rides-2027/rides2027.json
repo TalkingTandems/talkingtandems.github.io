@@ -1,31 +1,6 @@
 {
   "year": 2027,
-  "updated": "2026-10-31",
+  "updated": "2026-10-30",
   "notice": "The 2027 programme is being prepared. Ride dates and details will appear here as they are confirmed.",
-  "rides": [
-    {
-      "date": "2027-01-03",
-      "title": "Hangover Ride",
-      "start": "Dalgety Bay Sailing Club",
-      "time": "10:00",
-      "distance_miles": 10,
-      "status": "planned",
-      "description": "Short and easy run to blow away the New Year cobwebs",
-      "refreshments": "Louis Browns",
-      "route_url": "https://talkingtandems.github.io/TTGR999%20-%20Hangover%20Ride.html",
-      "event_url": ""
-    },
-    {
-      "date": "2027-01-09",
-      "title": "Kirkcaldy Loop",
-      "start": "Dalgety Bay Sailing Club",
-      "time": "",
-      "distance_miles": 30,
-      "status": "planned",
-      "description": "Kirkcaldy Loop",
-      "refreshments": "",
-      "route_url": "https://talkingtandems.github.io/TTGR28%20-%20Kirkcaldy%20Loop.html",
-      "event_url": ""
-    }
-  ]
+  "rides": []
 }
