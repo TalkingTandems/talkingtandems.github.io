@@ -1,6 +1,19 @@
 {
   "year": 2027,
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "notice": "The 2027 programme is being prepared. Ride dates and details will appear here as they are confirmed.",
-  "rides": []
+  "rides": [
+    {
+      "date": "2027-01-03",
+      "title": "Hangover Ride",
+      "start": "Dalgety Bay Sailing Club",
+      "time": "10:00",
+      "distance_miles": 10,
+      "status": "planned",
+      "description": "Short and easy run to blow away the New Year cobwebs",
+      "refreshments": "Louis Browns",
+      "route_url": "https://talkingtandems.github.io/TTGR999%20-%20Hangover%20Ride.html",
+      "event_url": ""
+    }
+  ]
 }
