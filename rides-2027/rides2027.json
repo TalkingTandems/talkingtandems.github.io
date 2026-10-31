@@ -17,9 +17,9 @@
     },
     {
       "date": "2027-01-09",
-      "title": "TBC",
+      "title": "TBC - KRFC Loop",
       "start": "Dalgety Bay Sailing Club",
-      "time": "",
+      "time": "10:00",
       "distance_miles": 35,
       "status": "planned",
       "description": "",
@@ -29,9 +29,9 @@
     },
     {
       "date": "2027-01-31",
-      "title": "TBC",
+      "title": "TBC - West Fife Villages",
       "start": "Dalgety Bay Sailing Club",
-      "time": "",
+      "time": "10:00",
       "distance_miles": 35,
       "status": "planned",
       "description": "",
@@ -41,7 +41,7 @@
     },
     {
       "date": "2027-02-13",
-      "title": "TBC",
+      "title": "TBC _ Findatie Loop",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
@@ -53,7 +53,7 @@
     },
     {
       "date": "2027-02-28",
-      "title": "TBC",
+      "title": "TBC - Union Canal Loop",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
@@ -65,7 +65,7 @@
     },
     {
       "date": "2027-03-13",
-      "title": "TBC",
+      "title": "TBC - Auchterarder Loop",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
@@ -89,7 +89,7 @@
     },
     {
       "date": "2027-04-10",
-      "title": "TBC",
+      "title": "TBC - Edinburgh Loop",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
@@ -125,8 +125,8 @@
     },
     {
       "date": "2027-05-30",
-      "title": "TBC",
-      "start": "Dalgety Bay Sailing Club",
+      "title": "TBC - East Neuk Loop",
+      "start": "Ceres",
       "time": "",
       "distance_miles": 35,
       "status": "planned",
@@ -137,8 +137,8 @@
     },
     {
       "date": "2027-06-12",
-      "title": "TBC",
-      "start": "Dalgety Bay Sailing Club",
+      "title": "TBC - Newburgh Loop",
+      "start": "Falkland",
       "time": "",
       "distance_miles": 35,
       "status": "planned",
@@ -173,7 +173,7 @@
     },
     {
       "date": "2027-07-10",
-      "title": "TBC",
+      "title": "TBC - West Fife Villages",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
@@ -185,8 +185,8 @@
     },
     {
       "date": "2027-07-25",
-      "title": "TBC",
-      "start": "Dalgety Bay Sailing Club",
+      "title": "TBC - Meigle Loop",
+      "start": "Scone Airpott",
       "time": "",
       "distance_miles": 35,
       "status": "planned",
@@ -209,7 +209,7 @@
     },
     {
       "date": "2027-08-28",
-      "title": "TBC",
+      "title": "TBC - Absent Friends Ride",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
@@ -221,7 +221,7 @@
     },
     {
       "date": "2027-09-11",
-      "title": "TBC",
+      "title": "TBC - Balerno Loop",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
@@ -257,8 +257,8 @@
     },
     {
       "date": "2027-10-31",
-      "title": "TBC",
-      "start": "Dalgety Bay Sailing Club",
+      "title": "TBC - Tayport Loop",
+      "start": "Leuchars Station",
       "time": "",
       "distance_miles": 35,
       "status": "planned",
@@ -293,7 +293,7 @@
     },
     {
       "date": "2027-12-08",
-      "title": "TBC",
+      "title": "TBC - Culross O&B",
       "start": "Dalgety Bay Sailing Club",
       "time": "",
       "distance_miles": 35,
