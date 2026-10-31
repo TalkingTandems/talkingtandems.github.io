@@ -14,6 +14,18 @@
       "refreshments": "Louis Browns",
       "route_url": "https://talkingtandems.github.io/TTGR999%20-%20Hangover%20Ride.html",
       "event_url": ""
+    },
+    {
+      "date": "2027-01-09",
+      "title": "Kirkcaldy Loop",
+      "start": "Dalgety Bay Sailing Club",
+      "time": "",
+      "distance_miles": 30,
+      "status": "planned",
+      "description": "Kirkcaldy Loop",
+      "refreshments": "",
+      "route_url": "https://talkingtandems.github.io/TTGR28%20-%20Kirkcaldy%20Loop.html",
+      "event_url": ""
     }
   ]
 }
