@@ -27,13 +27,36 @@ h2{font-size:1.24rem;margin:19px 0 9px}
 @media(max-width:600px){.wrap{padding:0 12px}.hero{padding:15px 0;margin-top:12px}.panel{padding:14px}.intro{font-size:.94rem}}
 
 .listen-controls{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:12px 0}.listen-controls button{border:2px solid #205d43;border-radius:8px;background:#205d43;color:white;padding:10px 15px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}.listen-controls button.stop{background:white;color:#205d43}.listen-controls button:disabled{opacity:.5;cursor:not-allowed}.listen-controls label{font-weight:700}.listen-controls select{font:inherit;padding:8px;border-radius:7px;min-height:44px}.audio-help{font-size:.86rem;color:#465d51;margin:4px 0 10px}
+
+/* V6: compact, accessible month and ride disclosure layout */
+.month-group{border:1px solid #d3ded6;border-radius:10px;background:#fff;margin:0 0 10px;overflow:hidden}
+.month-group>summary{padding:14px 16px;background:#eaf2ec;color:#173d2d;font-weight:700;font-size:1.08rem;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.month-group>summary::-webkit-details-marker,.compact-ride>summary::-webkit-details-marker{display:none}
+.month-group>summary::after,.compact-ride>summary::after{content:'+';font-weight:700;font-size:1.4rem;line-height:1;flex:none}
+.month-group[open]>summary::after,.compact-ride[open]>summary::after{content:'−'}
+.month-count{font-size:.85rem;color:#52675b;font-weight:400;margin-left:auto}
+.month-content{padding:0 14px}
+.compact-ride{border-bottom:1px solid #d9e3db}
+.compact-ride:last-child{border-bottom:0}
+.compact-ride>summary{cursor:pointer;list-style:none;padding:13px 2px;display:flex;align-items:center;gap:12px;min-height:55px}
+.compact-ride>summary::after{font-size:1.25rem;color:#205d43}
+.compact-date{width:74px;flex:none;font-weight:700;color:#205d43;font-size:.9rem}
+.compact-title{font-weight:700;display:block}
+.compact-sub{color:#52675b;font-size:.88rem;display:block;margin-top:2px}
+.compact-info{flex:1;min-width:0}
+.compact-details{padding:0 12px 13px 86px}
+.compact-details .ride{padding:0;border:0}
+.compact-details .ride>div:first-child,.compact-details .ride>h3{display:none}
+.compact-details .meta{margin:4px 0 10px}
+.compact-details .listen-controls{margin-bottom:0}
+@media(max-width:600px){.month-group>summary{padding:13px}.month-content{padding:0 10px}.compact-date{width:60px}.compact-ride>summary{gap:8px}.compact-details{padding:0 6px 13px 6px}.compact-sub{font-size:.82rem}}
 </style></head><body>
 <header class="hero"><div class="wrap"><h1>Rides &amp; Events 2027</h1><p class="hero-sub">Our planned tandem rides, all in one place.</p></div></header>
 <main class="wrap"><p class="intro">Find your next ride, explore the 2027 programme and open route details. Please check for updates before travelling.</p>
 <div id="error" class="notice" role="alert">The programme could not be loaded. Please try again later.</div>
 <p class="audio-help">Choose Listen to ride to hear the details. Where a recorded Scottish narration is available it will play; otherwise your device’s speech voice is used.</p>
 <section aria-labelledby="next-heading"><h2 id="next-heading">Our next ride</h2><div class="panel next" id="next"><p class="muted">Loading programme…</p></div></section>
-<section aria-labelledby="programme-heading"><div class="sectionhead"><h2 id="programme-heading">Full 2027 programme</h2></div><p class="legend">Rides are listed in date order, with any changes clearly marked.</p><div class="panel" id="programme" aria-live="polite"><p class="muted">Loading programme…</p></div></section>
+<section aria-labelledby="programme-heading"><div class="sectionhead"><h2 id="programme-heading">Full 2027 programme</h2></div><p class="legend">Rides are grouped by month. Select a ride to see its details and listening controls.</p><div id="programme" aria-live="polite"><p class="muted">Loading programme…</p></div></section>
 <section aria-labelledby="library-heading"><h2 id="library-heading">Explore our routes</h2><div class="panel"><p>Explore route descriptions, maps and downloadable GPX files in the Talking Tandems route library.</p><p><a href="https://talkingtandems.github.io/" target="_blank" rel="noopener">Visit the Talking Tandems route library (opens in a new tab)</a></p></div></section>
 <p id="updated" class="muted"></p></main>
 
@@ -51,7 +74,32 @@ function speechText(r){return ['Talking Tandems ride.',r.title||'Ride',formatDat
 function listen(r, speed, status){stopListening();status.textContent='Starting audio';const url=r.audio_url||'';if(/^https:\/\//i.test(url)){const audio=new Audio(url);activeAudio=audio;audio.playbackRate=speed;audio.onended=()=>{status.textContent='Finished listening';activeAudio=null};audio.onerror=()=>{status.textContent='Audio file unavailable; using device speech';activeAudio=null;speakDevice(r,speed,status)};audio.play().then(()=>{status.textContent='Playing recorded narration'}).catch(()=>{activeAudio=null;speakDevice(r,speed,status)});return} speakDevice(r,speed,status)}
 function speakDevice(r,speed,status){if(!('speechSynthesis' in window)){status.textContent='Speech is not supported in this browser';return}const utterance=new SpeechSynthesisUtterance(speechText(r));utterance.lang='en-GB';utterance.rate=speed;const voices=window.speechSynthesis.getVoices();utterance.voice=voices.find(v=>/scottish|en-GB-scotland/i.test(v.name+' '+v.lang))||voices.find(v=>v.lang.toLowerCase()==='en-gb')||null;utterance.onend=()=>{status.textContent='Finished listening';activeSpeech=null};utterance.onerror=()=>{status.textContent='Unable to play speech';activeSpeech=null};activeSpeech=utterance;window.speechSynthesis.speak(utterance);status.textContent='Speaking using your device voice'}
 function listenControls(r){const wrapper=node('div','listen-controls');const play=node('button',null,'▶ Listen to ride');play.type='button';play.setAttribute('aria-label','Listen to '+(r.title||'ride')+' details');const stop=node('button','stop','■ Stop');stop.type='button';stop.setAttribute('aria-label','Stop reading ride details');const label=node('label',null,'Speed');const speed=document.createElement('select');const id='speed-'+Math.random().toString(36).slice(2);speed.id=id;label.htmlFor=id;for(const [value,title] of [['0.85','Slow'],['1','Normal'],['1.15','Fast']]){const opt=new Option(title,value);if(value==='1')opt.selected=true;speed.add(opt)}const status=node('span','sr-only','');status.setAttribute('role','status');play.addEventListener('click',()=>listen(r,Number(speed.value),status));stop.addEventListener('click',()=>{stopListening();status.textContent='Stopped'});wrapper.append(play,stop,label,speed,status);return wrapper}
+function shortDate(s){return new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',timeZone:'Europe/London'}).format(new Date(s+'T12:00:00Z'))}
+function monthName(s){return new Intl.DateTimeFormat('en-GB',{month:'long',year:'numeric',timeZone:'Europe/London'}).format(new Date(s+'T12:00:00Z'))}
+function renderCompactProgramme(rides,today){
+  programme.replaceChildren();
+  const groups=new Map();
+  for(const r of rides){const key=r.date.slice(0,7);if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}
+  const keys=[...groups.keys()];
+  const active=keys.find(k=>k===today.slice(0,7)) || keys.find(k=>k>today.slice(0,7)) || keys[0];
+  for(const key of keys){
+    const items=groups.get(key),month=document.createElement('details');month.className='month-group';
+    if(key===active)month.open=true;
+    const heading=node('summary');heading.append(node('span',null,monthName(key+'-01')),node('span','month-count',items.length+' '+(items.length===1?'ride':'rides')));
+    month.append(heading);const content=node('div','month-content');
+    for(const r of items){
+      const item=document.createElement('details');item.className='compact-ride';
+      const summary=node('summary');const date=node('span','compact-date',shortDate(r.date));
+      const info=node('span','compact-info');info.append(node('span','compact-title',r.title||'Talking Tandems ride'));
+      const sub=[r.distance_miles!=null?r.distance_miles+' miles':null,r.start||null].filter(Boolean).join(' · ');
+      if(sub)info.append(node('span','compact-sub',sub));
+      summary.append(date,info);if(r.status&&r.status!=='planned')summary.append(node('span','pill '+r.status,r.status));
+      item.append(summary);const detailBox=node('div','compact-details');detailBox.append(rideCard(r));item.append(detailBox);content.append(item);
+    }
+    month.append(content);programme.append(month);
+  }
+}
 function rideCard(r){const article=node('article','ride');const top=node('div');top.append(node('span','datebox',formatDate(r.date)));if(r.status&&r.status!=='planned')top.append(document.createTextNode('  '),node('span','pill '+r.status,r.status.charAt(0).toUpperCase()+r.status.slice(1)));article.append(top,node('h3',null,r.title||'Talking Tandems ride'));const meta=node('div','meta');detail(meta,'Meet',r.start);detail(meta,'Distance',r.distance_miles!=null?r.distance_miles+' miles':null);detail(meta,'Time',r.time);if(meta.childNodes.length)article.append(meta);if(r.description)article.append(node('p',null,r.description));if(r.refreshments)article.append(node('p',null,'Refreshments: '+r.refreshments));const actions=node('div','actions');if(r.route_url){const a=link(r.route_url,'View route details');if(a)actions.append(a)}if(r.event_url){const a=link(r.event_url,'Ride information / RSVP');if(a)actions.append(a)}if(actions.childNodes.length)article.append(actions);article.append(listenControls(r));return article}
-async function load(){try{const response=await fetch('./rides2027.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('Unable to load programme');const data=await response.json();if(!Array.isArray(data.rides))throw Error('Invalid rides');const rides=data.rides.filter(r=>r.date&&/^2027-\d\d-\d\d$/.test(r.date)).sort((a,b)=>a.date.localeCompare(b.date));const today=dateKey();const upcoming=rides.find(r=>r.date>=today&&!['cancelled','completed'].includes(r.status));next.replaceChildren();if(upcoming){const c=rideCard(upcoming);c.style.border='none';next.append(c)}else{next.append(node('p','muted',rides.length?'No further rides are currently scheduled for 2027.':'The next ride will appear here when the 2027 dates are confirmed.'))}programme.replaceChildren();if(!rides.length){programme.append(node('p','no-rides',data.notice||'The 2027 programme is being prepared. Please check back soon.'))}else{for(const ride of rides)programme.append(rideCard(ride))}if(data.updated)document.getElementById('updated').textContent='Programme last updated: '+new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric'}).format(new Date(data.updated+'T12:00:00Z'))}catch(err){console.error(err);document.getElementById('error').style.display='block';next.replaceChildren(node('p','muted','Next ride unavailable'));programme.replaceChildren(node('p','muted','Programme unavailable'))}}
+async function load(){try{const response=await fetch('./rides2027.json?ts='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('Unable to load programme');const data=await response.json();if(!Array.isArray(data.rides))throw Error('Invalid rides');const rides=data.rides.filter(r=>r.date&&/^2027-\d\d-\d\d$/.test(r.date)).sort((a,b)=>a.date.localeCompare(b.date));const today=dateKey();const upcoming=rides.find(r=>r.date>=today&&!['cancelled','completed'].includes(r.status));next.replaceChildren();if(upcoming){const c=rideCard(upcoming);c.style.border='none';next.append(c)}else{next.append(node('p','muted',rides.length?'No further rides are currently scheduled for 2027.':'The next ride will appear here when the 2027 dates are confirmed.'))}programme.replaceChildren();if(!rides.length){programme.append(node('p','no-rides',data.notice||'The 2027 programme is being prepared. Please check back soon.'))}else{renderCompactProgramme(rides,today)}if(data.updated)document.getElementById('updated').textContent='Programme last updated: '+new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric'}).format(new Date(data.updated+'T12:00:00Z'))}catch(err){console.error(err);document.getElementById('error').style.display='block';next.replaceChildren(node('p','muted','Next ride unavailable'));programme.replaceChildren(node('p','muted','Programme unavailable'))}}
 load();
 </script></body></html>
