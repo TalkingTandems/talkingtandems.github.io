@@ -50,11 +50,26 @@ h2{font-size:1.24rem;margin:19px 0 9px}
 .compact-details .meta{margin:4px 0 10px}
 .compact-details .listen-controls{margin-bottom:0}
 @media(max-width:600px){.month-group>summary{padding:13px}.month-content{padding:0 10px}.compact-date{width:60px}.compact-ride>summary{gap:8px}.compact-details{padding:0 6px 13px 6px}.compact-sub{font-size:.82rem}}
+
+/* V7: one compact listening toolbar per expanded ride */
+.audio-toolbar{margin:12px 0 2px;padding:10px 12px;background:#eef5ef;border:1px solid #c9dccf;border-radius:9px}
+.audio-toolbar-title{font-weight:700;margin:0 0 7px;font-size:.94rem}
+.audio-choice-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.audio-choice{font:inherit;font-weight:700;font-size:.9rem;min-height:44px;border:2px solid #205d43;background:white;color:#205d43;border-radius:8px;padding:8px 5px;cursor:pointer}
+.audio-choice:hover,.audio-choice[aria-pressed="true"]{background:#205d43;color:white}
+.audio-choice:disabled{opacity:.55;cursor:not-allowed}
+.audio-bottom{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
+.audio-small{font:inherit;font-size:.85rem;border:1px solid #205d43;color:#205d43;background:#fff;border-radius:7px;min-height:40px;padding:6px 12px;cursor:pointer}
+.audio-small:disabled{opacity:.5;cursor:not-allowed}
+.audio-bottom label{font-size:.85rem;font-weight:700;margin-left:auto}
+.audio-bottom select{font:inherit;font-size:.85rem;border:1px solid #789584;border-radius:6px;padding:7px;min-height:40px}
+.audio-status{font-size:.83rem;color:#385646;margin:7px 0 0;line-height:1.35}
+@media(max-width:390px){.audio-toolbar{padding:9px 7px}.audio-choice{font-size:.82rem;padding:6px 2px}.audio-bottom label{margin-left:0}}
 </style></head><body>
 <header class="hero"><div class="wrap"><h1>Rides &amp; Events 2027</h1><p class="hero-sub">Our planned tandem rides, all in one place.</p></div></header>
 <main class="wrap"><p class="intro">Find your next ride, explore the 2027 programme and open route details. Please check for updates before travelling.</p>
 <div id="error" class="notice" role="alert">The programme could not be loaded. Please try again later.</div>
-<p class="audio-help">Choose Listen to ride to hear the details. Where a recorded Scottish narration is available it will play; otherwise your device’s speech voice is used.</p>
+<p class="audio-help">Open a ride and choose Summary, Scenery or Terrain to listen. Speech uses a voice available on your device.</p>
 <section aria-labelledby="next-heading"><h2 id="next-heading">Our next ride</h2><div class="panel next" id="next"><p class="muted">Loading programme…</p></div></section>
 <section aria-labelledby="programme-heading"><div class="sectionhead"><h2 id="programme-heading">Full 2027 programme</h2></div><p class="legend">Rides are grouped by month. Select a ride to see its details and listening controls.</p><div id="programme" aria-live="polite"><p class="muted">Loading programme…</p></div></section>
 <section aria-labelledby="library-heading"><h2 id="library-heading">Explore our routes</h2><div class="panel"><p>Explore route descriptions, maps and downloadable GPX files in the Talking Tandems route library.</p><p><a href="https://talkingtandems.github.io/" target="_blank" rel="noopener">Visit the Talking Tandems route library (opens in a new tab)</a></p></div></section>
@@ -68,12 +83,106 @@ const dateKey=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year
 function node(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!=null)e.textContent=String(content);return e}
 function link(url,label){if(!/^https:\/\//i.test(url))return null;const a=node('a',null,label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a}
 function detail(parent,label,value){if(value===undefined||value===null||value==='')return;const e=node('span');e.append(node('strong',null,label+': '),document.createTextNode(String(value)));parent.append(e)}
-let activeAudio=null, activeSpeech=null;
-function stopListening(){if(activeAudio){activeAudio.pause();activeAudio.currentTime=0;activeAudio=null}if('speechSynthesis' in window)window.speechSynthesis.cancel();activeSpeech=null}
-function speechText(r){return ['Talking Tandems ride.',r.title||'Ride',formatDate(r.date),r.status&&r.status!=='planned'?'Status: '+r.status:'',r.start?'Meeting point: '+r.start:'',r.time?'Meeting time: '+r.time:'',r.distance_miles!=null?'Distance: '+r.distance_miles+' miles':'',r.description||'',r.refreshments?'Refreshments: '+r.refreshments:''].filter(Boolean).join('. ')}
-function listen(r, speed, status){stopListening();status.textContent='Starting audio';const url=r.audio_url||'';if(/^https:\/\//i.test(url)){const audio=new Audio(url);activeAudio=audio;audio.playbackRate=speed;audio.onended=()=>{status.textContent='Finished listening';activeAudio=null};audio.onerror=()=>{status.textContent='Audio file unavailable; using device speech';activeAudio=null;speakDevice(r,speed,status)};audio.play().then(()=>{status.textContent='Playing recorded narration'}).catch(()=>{activeAudio=null;speakDevice(r,speed,status)});return} speakDevice(r,speed,status)}
-function speakDevice(r,speed,status){if(!('speechSynthesis' in window)){status.textContent='Speech is not supported in this browser';return}const utterance=new SpeechSynthesisUtterance(speechText(r));utterance.lang='en-GB';utterance.rate=speed;const voices=window.speechSynthesis.getVoices();utterance.voice=voices.find(v=>/scottish|en-GB-scotland/i.test(v.name+' '+v.lang))||voices.find(v=>v.lang.toLowerCase()==='en-gb')||null;utterance.onend=()=>{status.textContent='Finished listening';activeSpeech=null};utterance.onerror=()=>{status.textContent='Unable to play speech';activeSpeech=null};activeSpeech=utterance;window.speechSynthesis.speak(utterance);status.textContent='Speaking using your device voice'}
-function listenControls(r){const wrapper=node('div','listen-controls');const play=node('button',null,'▶ Listen to ride');play.type='button';play.setAttribute('aria-label','Listen to '+(r.title||'ride')+' details');const stop=node('button','stop','■ Stop');stop.type='button';stop.setAttribute('aria-label','Stop reading ride details');const label=node('label',null,'Speed');const speed=document.createElement('select');const id='speed-'+Math.random().toString(36).slice(2);speed.id=id;label.htmlFor=id;for(const [value,title] of [['0.85','Slow'],['1','Normal'],['1.15','Fast']]){const opt=new Option(title,value);if(value==='1')opt.selected=true;speed.add(opt)}const status=node('span','sr-only','');status.setAttribute('role','status');play.addEventListener('click',()=>listen(r,Number(speed.value),status));stop.addEventListener('click',()=>{stopListening();status.textContent='Stopped'});wrapper.append(play,stop,label,speed,status);return wrapper}
+let activeAudio=null,activeSpeech=null,activeStatus=null,activeToolbar=null,playbackId=0;
+const routeCache=new Map();
+function stopListening(message='Stopped'){
+  playbackId++;
+  if(activeAudio){activeAudio.pause();activeAudio.currentTime=0;activeAudio=null}
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  activeSpeech=null;
+  if(activeStatus)activeStatus.textContent=message;
+  if(activeToolbar)resetToolbar(activeToolbar);
+  activeStatus=null;activeToolbar=null;
+}
+function resetToolbar(toolbar){
+  toolbar.querySelectorAll('.audio-choice').forEach(b=>b.setAttribute('aria-pressed','false'));
+  const pause=toolbar.querySelector('[data-action="pause"]'),stop=toolbar.querySelector('[data-action="stop"]');
+  if(pause){pause.disabled=true;pause.textContent='Pause'}
+  if(stop)stop.disabled=true;
+}
+function summaryText(r){return ['Talking Tandems ride',r.title||'Ride',formatDate(r.date),r.status&&r.status!=='planned'?'Status: '+r.status:'',r.start?'Meeting point: '+r.start:'',r.time?'Meeting time: '+r.time:'',r.distance_miles!=null?'Distance: '+r.distance_miles+' miles':'',r.description||'',r.refreshments?'Refreshments: '+r.refreshments:''].filter(Boolean).join('. ')}
+function safeRouteUrl(raw){
+  try{const u=new URL(raw,location.href);return u.protocol==='https:'&&u.hostname==='talkingtandems.github.io'&&u.pathname.toLowerCase().endsWith('.html')?u:null}catch{return null}
+}
+async function routeSections(r){
+  const url=safeRouteUrl(r.route_url);
+  if(!url)throw Error('No compatible published route page is linked to this ride.');
+  if(!routeCache.has(url.href)){
+    const request=(async()=>{
+      const response=await fetch(url.href,{mode:'cors'});
+      if(!response.ok)throw Error('Route page could not be loaded.');
+      const doc=new DOMParser().parseFromString(await response.text(),'text/html');
+      const sections={};
+      for(const section of doc.querySelectorAll('section')){
+        const heading=section.querySelector('h2,h3');if(!heading)continue;
+        const title=heading.textContent.trim().toLowerCase();
+        let type=null;
+        if(title.includes('scenery and points of interest'))type='scenery';
+        else if(title.includes('terrain and cycling difficulty')||title.includes('terrain and what to expect'))type='terrain';
+        if(!type)continue;
+        const clone=section.cloneNode(true);
+        clone.querySelectorAll('h1,h2,h3,script,style,button,iframe,svg').forEach(el=>el.remove());
+        sections[type]=clone.textContent.replace(/\s+/g,' ').trim();
+      }
+      return sections;
+    })();
+    routeCache.set(url.href,request);
+    request.catch(()=>routeCache.delete(url.href));
+  }
+  return routeCache.get(url.href);
+}
+function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/en[-_]GB/i.test(v.lang)&&/scottish|scotland|liam|fiona|rory/i.test(v.name))||voices.find(v=>/en[-_]GB/i.test(v.lang))||voices.find(v=>/^en/i.test(v.lang))||null}
+function playSpeech(content,label,toolbar,status,speed){
+  if(!('speechSynthesis' in window)){status.textContent='This browser does not support spoken playback.';resetToolbar(toolbar);return}
+  const id=playbackId;
+  const utterance=new SpeechSynthesisUtterance(label+'. '+content);utterance.lang='en-GB';utterance.rate=speed;
+  const voice=chooseVoice();if(voice)utterance.voice=voice;
+  activeSpeech=utterance;activeStatus=status;activeToolbar=toolbar;
+  const pause=toolbar.querySelector('[data-action="pause"]'),stop=toolbar.querySelector('[data-action="stop"]');pause.disabled=false;stop.disabled=false;
+  utterance.onend=()=>{if(id===playbackId)stopListening('Finished reading '+label.toLowerCase()+'.')};
+  utterance.onerror=e=>{if(id===playbackId&&!['canceled','interrupted'].includes(e.error))stopListening('Speech playback was interrupted.')};
+  window.speechSynthesis.speak(utterance);
+  status.textContent='Reading '+label.toLowerCase()+(voice?' using '+voice.name:' using your device voice')+'.';
+}
+async function playSection(r,type,toolbar,status){
+  stopListening();
+  const id=playbackId;
+  activeStatus=status;activeToolbar=toolbar;
+  const selected=toolbar.querySelector('[data-section="'+type+'"]');selected.setAttribute('aria-pressed','true');
+  const label={summary:'Route summary',scenery:'Scenery and points of interest',terrain:'Terrain and what to expect'}[type];
+  let content='';
+  if(type==='summary')content=summaryText(r);
+  else{
+    status.textContent='Loading '+label.toLowerCase()+' from the linked route…';
+    try{const sections=await routeSections(r);if(id!==playbackId)return;content=sections[type]||''}
+    catch(err){if(id!==playbackId)return;status.textContent=err.message+' You can still listen to the summary.';resetToolbar(toolbar);return}
+  }
+  if(id!==playbackId)return;
+  if(!content){status.textContent='No '+label.toLowerCase()+' description is available on the linked route yet.';resetToolbar(toolbar);return}
+  const speed=Number(toolbar.querySelector('select').value);
+  playSpeech(content,label,toolbar,status,speed);
+}
+function listenControls(r){
+  const box=node('div','audio-toolbar');box.setAttribute('role','group');box.setAttribute('aria-label','Listen to '+(r.title||'ride'));
+  box.append(node('p','audio-toolbar-title','Listen to this ride'));
+  const choices=node('div','audio-choice-row');
+  const status=node('p','audio-status','Select a listening option.');status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+  for(const [type,label,full] of [['summary','▶ Summary','Route summary'],['scenery','▶ Scenery','Scenery and points of interest'],['terrain','▶ Terrain','Terrain and what to expect']]){
+    const button=node('button','audio-choice',label);button.type='button';button.dataset.section=type;button.setAttribute('aria-label','Listen to '+full+' for '+(r.title||'this ride'));button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>playSection(r,type,box,status));choices.append(button)
+  }
+  const bottom=node('div','audio-bottom');
+  const pause=node('button','audio-small','Pause');pause.type='button';pause.dataset.action='pause';pause.disabled=true;
+  pause.addEventListener('click',()=>{if(!activeSpeech||activeToolbar!==box)return;const synth=window.speechSynthesis;if(synth.paused){synth.resume();pause.textContent='Pause';status.textContent='Reading resumed.'}else{synth.pause();pause.textContent='Resume';status.textContent='Reading paused.'}});
+  const stop=node('button','audio-small','Stop');stop.type='button';stop.dataset.action='stop';stop.disabled=true;stop.addEventListener('click',()=>stopListening());
+  const label=node('label',null,'Speed');const speed=document.createElement('select');
+  const id='voice-speed-'+(++listenControls.counter);speed.id=id;label.htmlFor=id;
+  for(const [value,name] of [['0.85','Slow'],['1','Normal'],['1.15','Fast']]){const option=new Option(name,value);if(value==='1')option.selected=true;speed.add(option)}
+  bottom.append(pause,stop,label,speed);box.append(choices,bottom,status);
+  if(!('speechSynthesis' in window)){choices.querySelectorAll('button').forEach(b=>b.disabled=true);status.textContent='Speech playback is unavailable in this browser. Route details are still accessible as text.'}
+  return box;
+}
+listenControls.counter=0;
+window.addEventListener('pagehide',()=>stopListening());
 function shortDate(s){return new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',timeZone:'Europe/London'}).format(new Date(s+'T12:00:00Z'))}
 function monthName(s){return new Intl.DateTimeFormat('en-GB',{month:'long',year:'numeric',timeZone:'Europe/London'}).format(new Date(s+'T12:00:00Z'))}
 function renderCompactProgramme(rides,today){
@@ -94,7 +203,7 @@ function renderCompactProgramme(rides,today){
       const sub=[r.distance_miles!=null?r.distance_miles+' miles':null,r.start||null].filter(Boolean).join(' · ');
       if(sub)info.append(node('span','compact-sub',sub));
       summary.append(date,info);if(r.status&&r.status!=='planned')summary.append(node('span','pill '+r.status,r.status));
-      item.append(summary);const detailBox=node('div','compact-details');detailBox.append(rideCard(r));item.append(detailBox);content.append(item);
+      item.addEventListener('toggle',()=>{if(!item.open&&activeToolbar&&item.contains(activeToolbar))stopListening()});item.append(summary);const detailBox=node('div','compact-details');detailBox.append(rideCard(r));item.append(detailBox);content.append(item);
     }
     month.append(content);programme.append(month);
   }
