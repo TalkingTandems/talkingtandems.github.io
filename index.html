@@ -8,94 +8,67 @@ const routes=[{"name": "TTGR28 - Kirkcaldy Loop", "file": "TTGR28 - Kirkcaldy Lo
 // Example: "TTGR41_Sheriffmuir.html": {distance: "72 km", difficulty: "Very Difficult"}
 // A distance override replaces the extracted distance summary. Leave entries out for placeholders.
 const routeDetails = {
-  "-.html": {"difficulty":"Easy"},
-
-  "TTGR999 - Hangover Ride.html": {"difficulty":"Easy","distance":"16.3 miles"},
-
-  "TTGR13 - Loch Leven Loop.html": {"difficulty":"Easy"},
-
-  
-
-  "TTGR61 - Winchburgh Loop.html": {"difficulty":"Moderately Difficult"},
-
-  "TTGR59 - Kinghorn Loch Loops Version 2.html": {"difficulty":"Very Difficult"},
-
-  "TTGR59 - Kinghorn Loch Loops.html": {"difficulty":"Very Difficult","distance":"27.3 miles"},
-
-  
-
-  "TTGR22 - Loch Leven Loop.html": {"difficulty":"Moderately Difficult","distance":"47.3 miles"},
-
-  "TTGR03 Extended - The Muirside Ride.html": {"difficulty":"Moderately Difficult"},
-
-  
-
-  "TTGR43 - West Fife Villages 4.html": {"difficulty":"Moderately Difficult"},
-
-  
-
-  
-
-  "TTGR03 Basic - The Muirside Ride.html": {"difficulty":"Moderately Difficult"},
-
-  
-
-  
-
-  
-
-  
-
-  "TTGR46 - Meigle Loop.html": {"difficulty":"Easy"},
-
-  "TTGR28 - Kirkcaldy Loop.html": {"difficulty":"Moderately Difficult"},
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  "TTGR44 - South of River.html": {"difficulty":"Moderately Difficult"},
-
-  "TTGR44 South of River.html": {"difficulty":"Moderately Difficult"},
-
-  "TTGR53 - Leuchars Loop.html": {"difficulty":"Difficult","distance":"47.9 km"},
-
-  
-
-  
-
-  
-
-  "TTGR22 Short - DBSC Findatie Loop.html": {"difficulty":"Moderately Difficult"},
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  "Lomond Loop.html": {"difficulty":"Moderately Difficult"},
-
+  "-.html": {
+    "difficulty": "Easy"
+  },
+  "TTGR999 - Hangover Ride.html": {
+    "difficulty": "Easy",
+    "distance": "16.3 miles"
+  },
+  "TTGR13 - Loch Leven Loop.html": {
+    "difficulty": "Easy"
+  },
+  "TTGR61 - Winchburgh Loop.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR59 - Kinghorn Loch Loops Version 2.html": {
+    "difficulty": "Very Difficult"
+  },
+  "TTGR59 - Kinghorn Loch Loops.html": {
+    "difficulty": "Very Difficult",
+    "distance": "27.3 miles"
+  },
+  "TTGR22 - Loch Leven Loop.html": {
+    "difficulty": "Moderately Difficult",
+    "distance": "47.3 miles"
+  },
+  "TTGR03 Extended - The Muirside Ride.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR43 - West Fife Villages 4.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR03 Basic - The Muirside Ride.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR46 - Meigle Loop.html": {
+    "difficulty": "Easy"
+  },
+  "TTGR28 - Kirkcaldy Loop.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR44 - South of River.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR44 South of River.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR53 - Leuchars Loop.html": {
+    "difficulty": "Difficult",
+    "distance": "47.9 km"
+  },
+  "TTGR22 Short - DBSC Findatie Loop.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "Lomond Loop.html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR65A - Auchterarder Trip (Day 1).html": {
+    "difficulty": "Moderately Difficult"
+  },
+  "TTGR65B - PerthAuchterarder (Day2).html": {
+    "difficulty": "Moderately Difficult"
+  }
 };
 const list=document.getElementById('routes'),search=document.getElementById('search'),sort=document.getElementById('sort'),count=document.getElementById('count');
 function render(){
