@@ -266,6 +266,18 @@
       "refreshments": "Luncg at Dobbie's Garden Centre",
       "route_url": "",
       "event_url": ""
+    },
+    {
+      "date": "2027-03-14",
+      "title": "Auchterarder Trip (Day 2)",
+      "start": "Broxden Travel Lodge",
+      "time": "",
+      "distance_miles": null,
+      "status": "planned",
+      "description": "AuchterarderTrip Day 2",
+      "refreshments": "",
+      "route_url": "",
+      "event_url": ""
     }
   ]
 }
