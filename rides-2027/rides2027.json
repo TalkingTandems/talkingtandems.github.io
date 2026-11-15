@@ -70,9 +70,9 @@
       "time": "10:00",
       "distance_miles": 35,
       "status": "planned",
-      "description": "Lunch at Fairley's Garden Centre",
-      "refreshments": "",
-      "route_url": "",
+      "description": "",
+      "refreshments": "Lunch at Fairley's Garden Centre",
+      "route_url": "https://talkingtandems.github.io/TTGR03%20-%20Muirside%20Loop%20(Extended).html",
       "event_url": ""
     },
     {
