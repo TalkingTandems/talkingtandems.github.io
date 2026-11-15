@@ -278,6 +278,18 @@
       "refreshments": "",
       "route_url": "https://talkingtandems.github.io/TTGR65B%20-%20PerthAuchterarder%20(Day%202).html",
       "event_url": ""
+    },
+    {
+      "date": "2027-04-24",
+      "title": "Dunfermline Beer Festival",
+      "start": "Pittencrieff Pavillion",
+      "time": "14:00",
+      "distance_miles": null,
+      "status": "planned",
+      "description": "",
+      "refreshments": "",
+      "route_url": "",
+      "event_url": ""
     }
   ]
 }
