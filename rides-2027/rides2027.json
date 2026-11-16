@@ -233,14 +233,14 @@
     },
     {
       "date": "2027-10-09",
-      "title": "Tayport Loop",
+      "title": "Leuchars Loop",
       "start": "Leuchars Station",
-      "time": "",
+      "time": "10:00",
       "distance_miles": 25,
       "status": "planned",
       "description": "",
       "refreshments": "Lunch at Larick Center, Tayport",
-      "route_url": "",
+      "route_url": "file:///C:/Users/royco/Documents/Talking%20Tandems/TT%20Route%20Manager/TalkingTandemsLibrary/TTGR53%20-%20Leuchars%20Loop.html",
       "event_url": ""
     },
     {
